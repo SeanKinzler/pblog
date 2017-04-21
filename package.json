@@ -20,6 +20,8 @@
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "forever": "^0.15.3",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^7.3.0",
     "nodemon": "^1.11.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import savePost from '../utils/savePost.js';
 
 export default class AddStory extends Component {
   constructor (props) {
