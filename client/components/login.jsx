@@ -30,11 +30,14 @@ export default class extends Component {
 
   render () {
     return(
-      <form>
-        <input placeholder="Username" type="text" onChange={this.updateUser}></input>
-        <input placeholder="password" type="password" onChange={this.updatePass}></input>
-        <br />
-        <input type="submit" onClick={this.loginHandler}></input>
+      <form action="/auth/openid" method="post">
+        <div>
+        <label>OpenID:</label>
+        <input type="text" name="openid_identifier"/><br/>
+        </div>
+        <div>
+        <input type="submit" value="Submit"/>
+        </div>
       </form>
     )
   }
