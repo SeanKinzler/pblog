@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import react, { Component } from 'react';
 
 export default class extends Component {
   constructor (props) {

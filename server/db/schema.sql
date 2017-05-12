@@ -9,14 +9,15 @@
 -- Table 'User'
 -- 
 -- ---
+DROP TABLE IF EXISTS `Posts`;
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `Users`;
     
-CREATE TABLE `User` (
-  `googleId` INTEGER NOT NULL,
-  `name` INTEGER NULL DEFAULT NULL,
-  `email` INTEGER NULL DEFAULT NULL,
-  `admin` INTEGER NULL DEFAULT false,
+CREATE TABLE `Users` (
+  `googleId` VARCHAR(24) NOT NULL,
+  `name` TINYTEXT NULL DEFAULT NULL,
+  `email` TINYTEXT NULL DEFAULT NULL,
+  `admin` BOOLEAN NULL DEFAULT false,
   PRIMARY KEY (`googleId`)
 );
 
@@ -24,8 +25,6 @@ CREATE TABLE `User` (
 -- Table 'Posts'
 -- 
 -- ---
-
-DROP TABLE IF EXISTS `Posts`;
     
 CREATE TABLE `Posts` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -40,7 +39,7 @@ CREATE TABLE `Posts` (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `Posts` ADD FOREIGN KEY (author) REFERENCES `User` (`googleId`);
+ALTER TABLE `Posts` ADD FOREIGN KEY (author) REFERENCES `Users` (googleId);
 
 -- ---
 -- Table Properties

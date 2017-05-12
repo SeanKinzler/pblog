@@ -5,13 +5,18 @@ import { render } from 'react-dom';
 import Home from './components/home.jsx';
 import AddStory from './components/addStory.jsx';
 import Login from './components/login.jsx';
+import jwt from './components/jwt.jsx';
+import { PrivateRoute } from './utils/auth.jsx';
+
 render((
   <Router>
     <div>
-      <Route exact path='/' component={Home} />
-      <Route path='/main' component={Home} />
-      <Route path='/addstory' component={AddStory} />
-      <Route path='/login' component={Login} />
+      <Route exact path='/' component={ Home } />
+      <Route path='/failedLogin' component={ Home } />
+      <Route path='/addstory1' component={ AddStory } />
+      <PrivateRoute path='/addstory2' component={ AddStory } />
+      <Route path='/login' component={ Login } />
+      <Route path='/jwt/:token' component={ jwt } />
     </div>
   </Router>
   ), document.getElementById('App'));
