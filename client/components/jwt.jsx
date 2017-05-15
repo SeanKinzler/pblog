@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-export default class jwt extends Component {
+import {connect} from 'react-redux';
+import * as Actions from '../actions/index.js';
+class jwt extends Component {
   constructor(props) {
     super(props);
     this.props = props;
@@ -7,8 +9,8 @@ export default class jwt extends Component {
 
   componentDidMount() {
     localStorage.token = window.location.pathname.slice(window.location.pathname.lastIndexOf('/') + 1);
-    console.log('logged in');
-    this.props.history.push('/');    
+    this.props.userSignIn(localStorage.token)
+    this.props.history.push('/adminMenu');    
     // logged in state
   }
 
@@ -21,3 +23,18 @@ export default class jwt extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    authenticated: state.authenticated
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, Actions)(jwt);

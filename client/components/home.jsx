@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
+import Navbar from './navbar.jsx';
 export default class Home extends Component {
   constructor (props) {
     super(props);
@@ -17,6 +18,8 @@ export default class Home extends Component {
     }
     return (
       <div>
+        <Navbar />
+        <br />
         hello Home
       </div>
     );

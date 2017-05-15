@@ -1,46 +1,34 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import store from '../store/createStore.js';
+import checkToken from '../components/checkToken.jsx';
 
 axios.defaults.headers.common['jwt'] = localStorage.token;
-const PrivateRoute = ({component: Component, that, ...rest}) => {
-  if (!that.state.auth) {
-    checkAuth(that).catch(err => {
-      console.log(err);
-      return (<Route {...rest} render={props => (
-        <Redirect to={{pathname: '/'}} />
-        )} />)
-    });
-  }
-  console.log('if check: ', that.state.auth)
-  if (that.state.auth) {
+export const PrivateRoute = ({component: Component, ...rest}) => {
+  let state = store.getState();
+  if (state.authenticated) {
     return (<Route {...rest} render={props => (
       <Component {...props} />
       )} />)
   } else {
-    return (<Route {...rest} render={props => (
-      <Redirect to={{pathname: '/'}} />
-      )} />)
+    return (<Route {...rest} component= {checkToken} compTemp={Component}/>)
   }
 };
 
-const checkAuth = (that) => {
-  return axios.post('/auth/verify').then((res) => {
+export const checkAuth = (callback) => {
+  return axios.post('/auth/verify').then((res, err) => {
     if (res) {
-      console.log('authenticated');
+      console.log(res);
       localStorage.name = res.data;
-      that.updateAuth(true);
-      // that.forceUpdate();
-      return true;
+      callback(true);
     } else {
-      console.log('failed to authenticate');
-      return false;
+      callback(false);
     }
-  })
+  }).catch(err => {
+    console.log('Authentication Error');
+    callback(false);
+  });
 };
 
-module.exports = {
-  PrivateRoute,
-  checkAuth,
 
-}
