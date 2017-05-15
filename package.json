@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SeanKinzler/pblog#readme",
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
