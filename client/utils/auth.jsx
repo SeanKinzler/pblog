@@ -19,7 +19,6 @@ export const PrivateRoute = ({component: Component, ...rest}) => {
 export const checkAuth = (callback) => {
   return axios.post('/auth/verify').then((res, err) => {
     if (res) {
-      console.log(res);
       localStorage.name = res.data;
       callback(true);
     } else {

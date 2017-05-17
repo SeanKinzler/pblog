@@ -10,12 +10,14 @@ export default class AddStory extends Component {
     this.updateAuthor = this.updateAuthor.bind(this);
     tinymce.init({ 
       selector:'textarea',
-      plugins: 'autolink link image lists preview save',
-      toolbar: 'save',
-      // save_enablewhendirty: true,
-      save_onsavecallback: this.saveCallback,
+      // plugins: 'autolink link image lists preview save',
+      // toolbar: 'save',
+      // // save_enablewhendirty: true,
+      // save_onsavecallback: this.saveCallback,
       height: '500px',
       width: '800px',
+    }).then(editors => {
+      console.log(editors)
     });
     this.state = {
       author: 'anonomous',
@@ -50,7 +52,7 @@ export default class AddStory extends Component {
           Author: <input value = {this.state.author} onChange={this.updateAuthor} />
           <br />
         </div>
-        <textarea />
+        <textarea></textarea>
       </form>
     )
   }

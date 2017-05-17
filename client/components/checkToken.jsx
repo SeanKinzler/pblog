@@ -10,7 +10,7 @@ class CheckToken extends Component {
     this.props = props;
     this.state = {
       checking: true,
-    }
+    };
     checkAuth(bool => {
       if (bool) {
         this.props.userSignIn(localStorage.token);
@@ -19,18 +19,9 @@ class CheckToken extends Component {
         let temp = {...this.state}
         temp.checking = false;
         this.setState(temp);
-
       }
-    })
+    });
   }
-
-  // componentWillUnmount() {
-  //   console.log('willunmount')
-  //   let temp = {...this.state}
-  //   temp.checking = false;
-  //   this.setState(temp);
-  //   console.log('unmountstate', this.state);
-  // }
 
   render () {
     if (this.props.authenticated) {
