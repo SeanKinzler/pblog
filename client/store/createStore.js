@@ -1,15 +1,19 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import Reducers from '../reducers/auth.jsx';
+import Reducers from '../reducers/reducers.js';
 import {persistStore, autoRehydrate} from 'redux-persist';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
-
+const logger = createLogger({
+  collapsed: true,
+})
 
 const store = createStore(
     Reducers,
     undefined,
     compose(
       // autoRehydrate(),
+      applyMiddleware(thunk),
       applyMiddleware(logger),
     )
   );

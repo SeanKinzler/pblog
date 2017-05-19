@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as Actions from '../actions/index.js';
+import { checkAuth } from '../utils/auth.jsx';
+
 class jwt extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +10,10 @@ class jwt extends Component {
   }
 
   componentDidMount() {
-    localStorage.token = window.location.pathname.slice(window.location.pathname.lastIndexOf('/') + 1);
+    let temp = window.location.pathname.slice(window.location.pathname.lastIndexOf('/') + 1);
+    console.log(temp);
+    [localStorage.token, temp] = temp.split('%25%25');
+    localStorage.name = temp.split('%20').join(' ');
     this.props.userSignIn(localStorage.token)
     this.props.history.push('/adminMenu');    
     // logged in state
