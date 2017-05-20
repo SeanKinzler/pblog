@@ -79,6 +79,11 @@ class AddStory extends Component {
     this.setState(this.state);
   }
 
+  componentWillUnmount() {
+    console.log('unmounted');
+    this.props.addEditor();
+  }
+
   render () {
     if (this.props.fetching) {
       return (

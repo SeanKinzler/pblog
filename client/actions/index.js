@@ -38,7 +38,7 @@ export const savePost = (html, title, author, id) => {
   return dispatch => {
     dispatch(savingPost());
     if (id !== undefined) {
-      axios.post('/addStory', {
+      axios.post('/api/addStory', {
         html,
         title,
         author,
@@ -49,7 +49,7 @@ export const savePost = (html, title, author, id) => {
         dispatch(savePostError(err))
       })
     } else {
-      axios.post('/addStory', {
+      axios.post('/api/addStory', {
         html,
         title,
         author,
@@ -91,7 +91,7 @@ export const savePostError = (err) => {
 export const getPosts = () => {
   return (dispatch) => {
     dispatch(gettingPosts())
-    axios.get('/allStories').then(res => {
+    axios.get('/api/allStories').then(res => {
       dispatch(setStatePosts(res.data));
     }).catch(err => {
       dispatch(getPostsErr(err));
