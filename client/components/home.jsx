@@ -12,7 +12,9 @@ class Home extends Component {
   }
 
   postClickHandler(e) {
-
+    let post = this.props.posts[e.target.dataset.index];
+    this.props.setPostToRender(post);
+    this.props.history.push(`/articles/${post.slug}`);
   }
 
   render() {
@@ -32,7 +34,7 @@ class Home extends Component {
         <ul>
           {this.props.posts.map((post, i) => {
             return (<li key={post.id} data-index={i} 
-              onClick={this.postClickHandler}>
+              onClick={this.postClickHandler.bind(this)}>
               {post.title}<br/>
               {post.author}
               </li>)

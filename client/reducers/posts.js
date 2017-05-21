@@ -8,13 +8,16 @@ import {
   SET_POST_TO_EDIT,
   SAVE_REDIRECT,
   ADD_EDITOR,
+  SET_POST_TO_RENDER,
 } from '../actions/index.js';
 
 const initialState = {
   posts: [],
+  slugInd: {},
   fetching: false,
   saved: false,
   editorCount: 0,
+  toRender: null,
 }
 
 
@@ -38,7 +41,8 @@ const PostReducer = (state = initialState, action) => {
     case SET_STATE_POSTS:
       return Object.assign({}, state, {
         fetching: false, 
-        posts: action.data,
+        posts: action.data[0],
+        slugInd: action.data[1],
       });
     case GET_POSTS_ERROR:
       return Object.assign({}, state, {fetching: false});
@@ -46,6 +50,10 @@ const PostReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         toEdit: action.data,
       });
+    case SET_POST_TO_RENDER:
+      return Object.assign({}, state, {
+        toRender: action.data,
+      })
     case ADD_EDITOR:
       return Object.assign({}, state, {editorCount: state.editorCount + 1});
     case SAVE_REDIRECT:

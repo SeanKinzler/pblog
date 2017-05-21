@@ -14,6 +14,7 @@ export const SAVED_POST = 'SAVED_POST';
 export const SAVE_POST_ERROR = 'SAVE_POST_ERROR';
 export const SAVE_REDIRECT = 'SAVE_REDIRECT';
 export const ADD_EDITOR = 'ADD_EDITOR';
+export const SET_POST_TO_RENDER = 'SET_POST_TO_RENDER';
 
 axios.defaults.headers.common['jwt'] = localStorage.token;
 
@@ -88,13 +89,15 @@ export const savePostError = (err) => {
   }
 }
 
-export const getPosts = () => {
+export const getPosts = (cb = () => {}) => {
   return (dispatch) => {
     dispatch(gettingPosts())
     axios.get('/api/allStories').then(res => {
       dispatch(setStatePosts(res.data));
+      cb();
     }).catch(err => {
       dispatch(getPostsErr(err));
+      cb();
     });
 
   }
@@ -117,9 +120,13 @@ export const getPostsErr = (err) => {
 }
 
 export const setStatePosts = (posts) => {
+  let slugInd = {};
+  posts.forEach(post => {
+    slugInd[post.slug] = post;
+  })
   return {
     type: SET_STATE_POSTS,
-    data: posts,
+    data: [posts, slugInd],
   }
   
 }
@@ -127,6 +134,13 @@ export const setStatePosts = (posts) => {
 export const setPostToEdit = (post) => {
   return {
     type: SET_POST_TO_EDIT,
+    data: post,
+  }
+}
+
+export const setPostToRender = (post) => {
+  return {
+    type: SET_POST_TO_RENDER,
     data: post,
   }
 }
