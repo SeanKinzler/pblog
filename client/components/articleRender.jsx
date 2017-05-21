@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as Actions from '../actions/index.js';
 import { connect } from 'react-redux';
 import store from '../store/createStore.js';
+import { Redirect } from 'react-router-dom';
 
 class ArticleRender extends Component {
   constructor(props) {
@@ -20,14 +21,16 @@ class ArticleRender extends Component {
   render() {
     if (store.getState().posts.fetching || this.props.toRender === null) {
       return (<div>Loading...</div>)
-    }
-    return (
-      <div>
-        <h2>{this.props.toRender.title}</h2>
-        <h4>Updated by: {this.props.toRender.author}</h4> 
-        <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
-      </div>
-    )
+    } else if (this.props.toRender === undefined) {
+      return (<Redirect to='/' />)
+    } else {
+      return (
+        <div>
+          <h2>{this.props.toRender.title}</h2>
+          <h4>Updated by: {this.props.toRender.author}</h4> 
+          <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
+        </div>
+    )}
   }
 }
 
