@@ -1,5 +1,6 @@
 const jwt = require('./jwtFns');
 const key = require('./credentials/jwtKey.js');
+console.log('process.env.deploy: ', process.env.deploy);
 const googleClientId = process.env.GOOGLE_ID || require('./credentials/googleApiKeys')['googleClientId'];
 const googleClientSecret = process.env.GOOGLE_SECRET || require('./credentials/googleApiKeys')['googleClientSecret'];
 const passport = require('passport');
