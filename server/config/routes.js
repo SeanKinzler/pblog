@@ -25,6 +25,7 @@ app.get('/admin',
 app.get('/auth/google/callback', (req, res) => {
   passport.authenticate( 'google', (err, user, info) => {
     token = pasteToken();
+    console.log(token);
     if (token === undefined) {
       res.redirect(`/accessDenied`)
     } else {

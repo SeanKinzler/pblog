@@ -6,6 +6,7 @@ const createToken = (body) => {
 };
 
 const verifyToken = (token, callback) => {
+  if (token)
   return jwt.verify(token, key, callback) 
 };
 
@@ -16,9 +17,7 @@ const jwtMiddleware = (req, res, next) => {
     res.send(403);
   } else {
     let decoded = verifyToken(req.headers.jwt);
-    console.log('decoded:', decoded);
     if (decoded !== undefined) {
-      console.log(decoded);
       next()
     } else {
       res.send(403)
@@ -27,7 +26,6 @@ const jwtMiddleware = (req, res, next) => {
 };
 
 const checkToken = (req, res) => {
-  console.log(req.headers.jwt);
   if (!req.headers.jwt) {
     res.send(301);
   } else {

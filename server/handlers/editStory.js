@@ -7,12 +7,10 @@ const editStoryHandler = (req, res) => {
   query = `select * from Posts where id=${req.body.id};`;
 
   sql(query, (err, data) => {
-    console.log('disData', data);
     data[0].html = fs.readFile(path.join(__dirname, `../public/${data[0].html}`), (err, htmlData) => {
       if (err) {
         res.sendStatus(404)
       }
-      console.log('htmlData', htmlData);
       data.slug = data[0].html;
       data.html = htmlData;
       res.send(data)
