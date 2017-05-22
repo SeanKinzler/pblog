@@ -8,9 +8,10 @@ const httpPort = process.env.httpPORT || 8080;
 const url = process.env.url || 'localhost';
 
 //https certs
+if 
 var serverConfig = {
-  key: fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.pem')),
-  cert: fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.cert')),
+  key: process.env.STUNNEL_PEM || fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.pem')),
+  cert: process.env.STUNNEL_CERT || fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.cert')),
 };
 
 const httpsServer = require('https').createServer(serverConfig, routes);
