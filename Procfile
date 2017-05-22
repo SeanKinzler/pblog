@@ -1,2 +1,2 @@
-setup: webpack -b
+setup: webpack
 web: forever server/server.js
