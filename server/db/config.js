@@ -8,8 +8,10 @@ const db = mysql.createConnection({
   ssl: 'Amazon RDS',
 });
 db.connect(err => {
-  console.log(err.code);
-  console.log(err.fatal);
+  if (err) {
+    console.log(err.code);
+    console.log(err.fatal);
+  }
 });
 
 const dbQuery = (query, callback) => {
