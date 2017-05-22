@@ -1,10 +1,5 @@
 const jwt = require('jsonwebtoken');
-if (process.env.deploy !== undefined) {
-  console.log('process.env.deploy: ', process.env.deploy);
-  const key = process.env.JWT_KEY;
-} else {
-  const key = require('./credentials/jwtKey.js');
-}
+const key = process.env.JWT_KEY || require('./credentials/jwtKey.js');
 
 const createToken = (body) => {
   return jwt.sign(body, key);
