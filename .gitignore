@@ -41,5 +41,4 @@ jspm_packages
 
 # Bundled Files
 bundle.js
-client/config
-server/config
+server/config/credentials
