@@ -7,7 +7,7 @@ import AdminMenu from '../components/adminMenu.jsx';
 import EditArticles from '../components/editArticles.jsx';
 import jwt from '../components/jwt.jsx';
 import { PrivateRoute } from '../utils/auth.jsx';
-import ArticleRender from '../components/ArticleRender.jsx';
+import ArticleRender from '../components/articleRender.jsx';
 
 export default class Routes extends Component {
   constructor(props) {
