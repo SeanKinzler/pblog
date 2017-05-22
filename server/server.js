@@ -8,8 +8,7 @@ const httpPort = process.env.httpPORT || 8080;
 const url = process.env.url || 'localhost';
 
 //https certs
-if 
-var serverConfig = {
+const serverConfig = {
   key: process.env.STUNNEL_PEM || fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.pem')),
   cert: process.env.STUNNEL_CERT || fs.readFileSync(path.join(__dirname, './config/credentials/stunnel.cert')),
 };
