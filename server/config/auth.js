@@ -22,10 +22,11 @@ passport.use(new GoogleStrategy({
       if (err) {
         console.log(`login error: ${err}`);
         done()
-      } else if (rows !== undefined) {
+      } else if (rows[0] !== undefined) {
         token = jwt.createToken(rows[0].name);
         done()
       } else {
+        console.log('attempted Login from: ', profile))
         done();
       }
     })
