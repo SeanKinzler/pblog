@@ -8,7 +8,6 @@ const httpPort = process.env.httpPORT || 8080;
 const deployPort = process.env.PORT;
 const url = process.env.url || 'localhost';
 
-console.log('typeof deployenv', typeof process.env.deploy);
 if (process.env.deploy !== undefined) {
   const deployServer = require('http').createServer(routes);
 
