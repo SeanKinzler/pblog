@@ -26,7 +26,7 @@ passport.use(new GoogleStrategy({
         token = jwt.createToken(rows[0].name);
         done()
       } else {
-        console.log('attempted Login from: ', profile))
+        console.log('attempted Login from: ', profile)
         done();
       }
     })
