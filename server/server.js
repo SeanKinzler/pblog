@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const routes = require('./config/routes.js');
 const mysql = require('./db/config.js');
-const httpsPort = process.env.httpsPORT || 8000;
+const httpsPort = process.env.PORT || 8000;
 const httpPort = process.env.httpPORT || 8080;
 const url = process.env.url || 'localhost';
 
