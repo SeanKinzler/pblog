@@ -7,7 +7,10 @@ const db = mysql.createConnection({
   database: 'PBlog',
   ssl: 'Amazon RDS',
 });
-db.connect();
+db.connect(err => {
+  console.log(err.code);
+  console.log(err.fatal);
+});
 
 const dbQuery = (query, callback) => {
   db.query(query, (error, results, fields) => {
