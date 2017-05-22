@@ -9,12 +9,13 @@ const googleClientSecret = process.env.GOOGLE_SECRET || require('./credentials/g
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const sqlQuery = require('../db/config.js');
+const callbackURL = process.env.url !== undefined ? `${process.env.url}/auth/google/callback` : "https://localhost:8000/auth/google/callback"
 
 let token;
 passport.use(new GoogleStrategy({
     clientID:     googleClientId,
     clientSecret: googleClientSecret,
-    callbackURL: "https://localhost:8000/auth/google/callback",
+    callbackURL: callbackURL,
   },
   (accessToken, refreshToken, profile, done) => {
     sqlQuery(`select * from Users where googleId = ${profile.id}`, (err, rows) => {
