@@ -1,5 +1,9 @@
 const jwt = require('./jwtFns');
-const key = require('./credentials/jwtKey.js');
+if (process.env.JWT_KEY !== undefined) {
+  const key = process.env.JWT_KEY;
+} else {
+  const key = require('./credentials/jwtKey.js');
+}
 const googleClientId = process.env.GOOGLE_ID || require('./credentials/googleApiKeys')['googleClientId'];
 const googleClientSecret = process.env.GOOGLE_SECRET || require('./credentials/googleApiKeys')['googleClientSecret'];
 const passport = require('passport');

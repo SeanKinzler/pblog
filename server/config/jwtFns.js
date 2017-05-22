@@ -2,8 +2,6 @@ const jwt = require('jsonwebtoken');
 if (process.env.JWT_KEY !== undefined) {
   const key = process.env.JWT_KEY;
 } else {
-  console.log('why:', process.env.JWT_KEY !== undefined)
-  console.log('why2:', process.env.JWT_KEY)
   const key = require('./credentials/jwtKey.js');
 }
 
