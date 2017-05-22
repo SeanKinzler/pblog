@@ -39,7 +39,6 @@ const allStoriesHandler = (req, res) => {
         }
       })
     })
-    console.log('getPosts:', data);
     
   })
 }
