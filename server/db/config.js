@@ -4,13 +4,16 @@ const db = mysql.createConnection({
   host: process.env.DBHOST,
   user: process.env.ROOTUSER,
   password: process.env.DBPASSWORD,
-  database: 'PBlog'
+  database: 'PBlog',
+  ssl: 'Amazon RDS',
 });
 db.connect();
 
 const dbQuery = (query, callback) => {
   db.query(query, (error, results, fields) => {
-    if (error) throw error;
+    if (error) {
+      console.log('DB QUERY ERROR: ', error);
+    };
     callback(null, results);
   });
 };
