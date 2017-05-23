@@ -18,7 +18,7 @@ export default class Routes extends Component {
   render() {
     return (<div>
       <Route exact path='/' component={ Home } />
-      <Route path='/failedLogin' component={ Home } />
+      <Route path='/accessDenied' component={ Home } />
       <PrivateRoute path='/addStory' component={ AddStory }/>
       <PrivateRoute path='/adminMenu' component={ AdminMenu }/>
       <PrivateRoute path='/editArticles' component={ EditArticles }/>

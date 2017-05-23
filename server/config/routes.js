@@ -8,6 +8,7 @@ const {verifyToken, jwtMiddleware, checkToken} = require('./jwtFns.js');
 
 const saveStoryHandler = require('../handlers/addStory.js');
 const { editStoryHandler, allStoriesHandler } = require('../handlers/editStory.js');
+const deleteStoryHandler = require('../handlers/deleteStory.js');
 //middlewear
 app.use(bodyParser());
 app.use(passport.initialize());
@@ -27,7 +28,7 @@ app.get('/auth/google/callback', (req, res) => {
     token = pasteToken();
     console.log(token);
     if (token === undefined) {
-      res.redirect(`/accessDenied`)
+      res.redirect(`/`)
     } else {
       res.redirect(`/jwt/${token}%%${verifyToken(token)}`);
     }
@@ -43,6 +44,8 @@ app.use(jwtMiddleware);
 app.post('/api/addStory', saveStoryHandler);
 
 app.get('/api/editStory', editStoryHandler);
+
+app.delete('/api/editStory', deleteStoryHandler);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../client/', 'index.html'));

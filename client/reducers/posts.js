@@ -9,6 +9,9 @@ import {
   SAVE_REDIRECT,
   ADD_EDITOR,
   SET_POST_TO_RENDER,
+  DELETING_POST,
+  DELETED_POST,
+  DELETE_POST_ERROR,
 } from '../actions/index.js';
 
 const initialState = {
@@ -35,6 +38,12 @@ const PostReducer = (state = initialState, action) => {
         saved: true,
       });
     case SAVE_POST_ERROR:
+      return Object.assign({}, state, {fetching: false});
+    case DELETING_POST:
+      return Object.assign({}, state, {fetching: true});
+    case DELETED_POST:
+      return Object.assign({}, state, {fetching: false});
+    case DELETE_POST_ERROR:
       return Object.assign({}, state, {fetching: false});
     case GETTING_POSTS:
       return Object.assign({}, state, {fetching: true});

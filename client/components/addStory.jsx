@@ -25,10 +25,6 @@ class AddStory extends Component {
 
   saveCallback (e) {
     let html = e.contentDocument.body.innerHTML;
-    console.log('saved');
-    console.log('author: ', this.state.author);
-    console.log('title: ', this.state.title);
-    console.log('html: ', html);
     if (this.props.toEdit) {
       this.props.savePost(
         html.split(' data-mce-bogus="1"').join(' /'),
@@ -80,7 +76,6 @@ class AddStory extends Component {
   }
 
   componentWillUnmount() {
-    console.log('unmounted');
     this.props.addEditor();
   }
 
@@ -90,7 +85,6 @@ class AddStory extends Component {
         <p>Please wait... <br />saving...</p>
         )
     } else if (this.props.saved) {
-      console.log(this.props);
       this.props.addEditor();
       this.props.saveRedirect();
       return (<Redirect to="/adminMenu"/>)

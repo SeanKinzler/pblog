@@ -12,8 +12,13 @@ class EditArticles extends Component {
   }
 
   editPostHandler (e) {
-    this.props.setPostToEdit(store.getState().posts.posts[e.target.dataset.index]);
+    console.log(e.target.dataset.index);
+    this.props.setPostToEdit(this.props.posts[e.target.dataset.index]);
     this.props.history.push('/addStory');
+  }
+
+  deletePostHandler (e) {
+    this.props.deletePost(this.props.posts[e.target.dataset.index]); 
   }
 
   render () {
@@ -25,8 +30,10 @@ class EditArticles extends Component {
       return (
         <ul>
           {store.getState().posts.posts.map((post, i) => {
-            return <li key={post.id} data-index={i} onClick={this.editPostHandler.bind(this)}>
-                {post.title}<br/>
+            return <li key={post.id} >
+                {post.title}<button data-index={i} onClick={this.editPostHandler.bind(this)}>Edit</button>
+                <button data-index={i} onClick={this.deletePostHandler.bind(this)}>Delete</button>
+                <br/>
                 {post.author}
               </li>
           })}
@@ -40,7 +47,7 @@ class EditArticles extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts,
+    posts: state.posts.posts,
   };
 };
 

@@ -8,14 +8,11 @@ const logger = createLogger({
   collapsed: true,
 })
 
+// autoRehydrate(),
 const store = createStore(
     Reducers,
     undefined,
-    compose(
-      // autoRehydrate(),
-      applyMiddleware(thunk),
-      applyMiddleware(logger),
-    )
+    compose(applyMiddleware(thunk), applyMiddleware(logger))
   );
 // persistStore(store);
 

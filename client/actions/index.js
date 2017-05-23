@@ -15,6 +15,9 @@ export const SAVE_POST_ERROR = 'SAVE_POST_ERROR';
 export const SAVE_REDIRECT = 'SAVE_REDIRECT';
 export const ADD_EDITOR = 'ADD_EDITOR';
 export const SET_POST_TO_RENDER = 'SET_POST_TO_RENDER';
+export const DELETING_POST = 'DELETING_POST';
+export const DELETED_POST = 'DELETED_POST';
+export const DELETE_POST_ERROR = 'DELETE_POST_ERROR';
 
 axios.defaults.headers.common['jwt'] = localStorage.token;
 
@@ -73,6 +76,43 @@ export const savingPost = () => {
 export const savedPost = () => {
   return {
     type: SAVED_POST
+  }
+}
+
+export const deletePost = (post) => {
+  return dispatch => {
+    console.log(post);
+    dispatch(deletingPost());
+    axios.delete('/api/editStory', {
+      params: {
+        id: post.id,
+        slug: post.slug,
+      }
+    }).then(res => {
+      dispatch(deletedPost());
+      dispatch(getPosts());
+    }).catch(err => {
+      dispatch(deletePostError(err));
+    })
+  }
+}
+
+export const deletingPost = () => {
+  return {
+    type: DELETING_POST
+  }
+}
+
+export const deletedPost = () => {
+  return {
+    type: DELETED_POST
+  }
+}
+
+export const deletePostError = (err) => {
+  console.log('deletePost Error: ', err);
+  return {
+    type: DELETE_POST_ERROR
   }
 }
 

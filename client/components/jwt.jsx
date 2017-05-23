@@ -14,9 +14,8 @@ class jwt extends Component {
     console.log(temp);
     [localStorage.token, temp] = temp.split('%25%25');
     localStorage.name = temp.split('%20').join(' ');
-    this.props.userSignIn(localStorage.token)
-    this.props.history.push('/adminMenu');    
-    // logged in state
+    this.props.userSignIn(localStorage.token);
+    this.props.history.push('/adminMenu');
   }
 
 

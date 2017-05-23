@@ -1,0 +1,55 @@
+
+/*hide tinymce apikey notification*/
+/*.mce-notification-warning {
+  visibility: hidden;
+}*/
+#mceu_15 {
+  visibility: hidden;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+#App {
+  position: relative;
+  /*min-height: 400px;*/
+  margin: auto;
+  height: 100%;   
+}
+
+.post {
+  margin: 0;
+  padding-top: 10px;
+  /*padding-bottom: 10px;*/
+}
+
+.post:hover {
+  background-color: #cccccc;
+}
+
+.post-list {
+  list-style: none;
+
+}
+
+.post-title {
+  margin: 0;
+}
+
+.by {
+  font-style: italic;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+.p-type-2 .post-title {
+  font-size: 18px;
+}
