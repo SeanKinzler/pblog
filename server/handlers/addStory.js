@@ -10,9 +10,10 @@ const saveStoryHandler = (req, res) => {
       }`
   if (req.body.id) {
     query = `UPDATE Posts SET 
-      html = "${newFileName}", 
+      slug = "${newFileName}", 
       author = "${req.body.author}",
       title = "${req.body.title}",
+      blurb = "${req.body.blurb}"
       editDate = CURRENT_TIMESTAMP 
       WHERE id=${req.body.id};`
       sql(`select html from Posts where id=${req.body.id}`, (err, data) => {
@@ -31,8 +32,8 @@ const saveStoryHandler = (req, res) => {
       });
 
   } else {
-    query = `INSERT INTO Posts (html, author, title) values ` + 
-      `("${newFileName}", "${req.body.author}", "${req.body.title}");`
+    query = `INSERT INTO Posts (slug, author, title, blurb) values ` + 
+      `("${newFileName}", "${req.body.author}", "${req.body.title}", "${req.body.blurb}");`
     fs.writeFileSync(path.join(__dirname, `../public/${newFileName}`), req.body.html);
     sql(query, (err, data) => {
     if (err) {

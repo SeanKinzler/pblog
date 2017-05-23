@@ -7,13 +7,13 @@ const editStoryHandler = (req, res) => {
   query = `select * from Posts where id=${req.body.id};`;
 
   sql(query, (err, data) => {
-    data[0].html = fs.readFile(path.join(__dirname, `../public/${data[0].html}`), (err, htmlData) => {
+    data[0].html = fs.readFile(path.join(__dirname, `../public/${data[0].slug}`), (err, htmlData) => {
       if (err) {
         res.sendStatus(404)
       }
       data.slug = data[0].html;
       data.html = htmlData;
-      res.send(data)
+      res.send({slug: data.slug, html: data.html})
     })
   })
 
@@ -25,12 +25,10 @@ const allStoriesHandler = (req, res) => {
   sql(query, (err, data) => {
     let count = 0;
     data.forEach(post => {
-      fs.readFile(path.join(__dirname, `../public/${post.html}`), 'utf-8', (err, htmlData) => {
+      fs.readFile(path.join(__dirname, `../public/${post.slug}`), 'utf-8', (err, htmlData) => {
         if (err || htmlData === undefined) {
-          post.slug = post.html;
           post.html = '<p>Load Error</p>';
         } else {
-          post.slug = post.html;
           post.html = htmlData;
         }
         count = count + 1

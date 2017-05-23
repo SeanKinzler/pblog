@@ -10,15 +10,18 @@ class AddStory extends Component {
     this.saveCallback = this.saveCallback.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateAuthor = this.updateAuthor.bind(this);
+    this.updateBlurb = this.updateBlurb.bind(this);
     if (this.props.toEdit) {
       this.state = {
         author: this.props.toEdit.author,
         title: this.props.toEdit.title,
+        blub: this.props.toEdit.blurb,
       }
     } else {
       this.state = {
         author: localStorage.name,
         title: 'untitled',
+        blurb: 'none',
       }
     }
   }
@@ -30,6 +33,7 @@ class AddStory extends Component {
         html.split(' data-mce-bogus="1"').join(' /'),
         this.state.title,
         this.state.author,
+        this.state.blurb,
         this.props.toEdit.id,
         )
     } else {
@@ -37,6 +41,7 @@ class AddStory extends Component {
         html.split(' data-mce-bogus="1"').join(' /'),
         this.state.title,
         this.state.author,
+        this.state.blurb,
         )
     }
   }
@@ -66,12 +71,17 @@ class AddStory extends Component {
   }
 
   updateTitle (e) {
-    this.state['title'] = e.target.value
+    this.state['title'] = e.target.value;
     this.setState(this.state);
   }
 
   updateAuthor (e) {
-    this.state['author'] = e.target.value
+    this.state['author'] = e.target.value;
+    this.setState(this.state);
+  }
+
+  updateBlurb (e) {
+    this.state['blurb'] = e.target.value;
     this.setState(this.state);
   }
 
@@ -96,6 +106,8 @@ class AddStory extends Component {
             <br />
             Author: <input value = {this.state.author} onChange={this.updateAuthor} />
             <br />
+            Blurb: <input value = {this.state.blurb} onChange={this.blurb} />
+            <br />
           </div>
           <div id={`editArea${this.props.editorCount}`} dangerouslySetInnerHTML={{__html: this.props.toEdit.html}}>
           </div>
@@ -108,6 +120,8 @@ class AddStory extends Component {
             Title: <input value = {this.state.title} onChange={this.updateTitle} />
             <br />
             Author: <input value = {this.state.author} onChange={this.updateAuthor} />
+            <br />
+            Blurb: <input value = {this.state.blurb} onChange={this.updateBlurb} />
             <br />
           </div>
           <div id={`editArea${this.props.editorCount}`}></div>

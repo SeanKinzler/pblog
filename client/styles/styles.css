@@ -1,8 +1,8 @@
 
 /*hide tinymce apikey notification*/
-/*.mce-notification-warning {
+.mce-notification-warning {
   visibility: hidden;
-}*/
+}
 #mceu_15 {
   visibility: hidden;
 }
@@ -10,6 +10,27 @@
 html, body {
   height: 100%;
   margin: 0;
+}
+
+.navbar-default {
+  border-width: 0;
+  background-image: none;
+}
+
+.navbar-brand.brand-link {
+  padding-top: 7px;
+}
+
+.brand-logo {
+  height: 36px;
+}
+
+.brand-link {
+  height: 50px;
+}
+
+.nav-ul {
+  color: #cccccc;
 }
 
 .btn:focus {
@@ -44,6 +65,10 @@ html, body {
 
 .by {
   font-style: italic;
+}
+
+.post-blurb {
+
 }
 
 hr {

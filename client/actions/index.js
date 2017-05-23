@@ -36,17 +36,19 @@ export const userSignOut = () => {
   }
 }
 
-export const savePost = (html, title, author, id) => {
+export const savePost = (html, title, author, blurb, id) => {
   console.log('save action')
 
   return dispatch => {
     dispatch(savingPost());
+    console.log(blurb);
     if (id !== undefined) {
       axios.post('/api/addStory', {
         html,
         title,
         author,
         id,
+        blurb,
       }).then(res => {
         dispatch(savedPost());
       }).catch(err => {
@@ -57,6 +59,7 @@ export const savePost = (html, title, author, id) => {
         html,
         title,
         author,
+        blurb,
       }).then(res => {
         dispatch(savedPost());
       }).catch(err => {

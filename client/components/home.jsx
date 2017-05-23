@@ -16,10 +16,10 @@ class Home extends Component {
   postClickHandler(e) {
     let target = e.target;
     //finds dataset if child is clicked
-    while (target.dataset.indexNum === undefined) {
+    while (target.dataset.index === undefined) {
       target = target.parentNode;
     }
-    let post = this.props.posts[target.dataset.indexNum];
+    let post = this.props.posts[target.dataset.index];
     this.props.setPostToRender(post);
     this.props.history.push(`/articles/${post.slug}`);
   }
@@ -44,7 +44,8 @@ class Home extends Component {
           <h3>ACCESS DENIED</h3>
         }
         <div className="posts container-fluid">
-          <div className="post p-type-1 text-center col-sm-8">
+          <div className="post p-type-1 text-center col-sm-8" key={posts[0].id} data-index={0}
+            onClick={this.postClickHandler.bind(this)}>
             <Post post={posts[0]}/>
             <hr />
           </div>
@@ -53,7 +54,20 @@ class Home extends Component {
               {rightPosts.map((post, i) => {
                 // console.log(i);
                 // console.log(this.props.posts[posts.length - i - 1])
-                return (<li className="post p-type-2" key={post.id} data-index-num={i + 1} 
+                return (<li className="post p-type-2" key={post.id} data-index={i + 1} 
+                  onClick={this.postClickHandler.bind(this)}>
+                  <Post post={post}/>
+                  <hr />
+                </li>)
+              })}
+            </ul>  
+          </div>
+          <div className="bottom-articles col-sm-12">
+            <ul className="post-list">
+              {bottomPosts.map((post, i) => {
+                // console.log(i);
+                // console.log(this.props.posts[posts.length - i - 1])
+                return (<li className="post p-type-3" key={post.id} data-index-num={i + 1} 
                   onClick={this.postClickHandler.bind(this)}>
                   <Post post={post}/>
                   <hr />
