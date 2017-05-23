@@ -46,4 +46,4 @@ bundle.js
 server/config/credentials
 
 #Articles
-server/public
+#server/public

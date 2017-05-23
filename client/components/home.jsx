@@ -44,12 +44,12 @@ class Home extends Component {
           <h3>ACCESS DENIED</h3>
         }
         <div className="posts container-fluid">
-          <div className="post p-type-1 text-center col-sm-8" key={posts[0].id} data-index={0}
+          <div className="post p-type-1 text-center col-sm-8 col-xs-12" key={posts[0].id} data-index={0}
             onClick={this.postClickHandler.bind(this)}>
             <Post post={posts[0]}/>
             <hr />
           </div>
-          <div className="right-articles col-sm-4">
+          <div className="right-articles col-sm-4 col-xs-12">
             <ul className="post-list">
               {rightPosts.map((post, i) => {
                 // console.log(i);
