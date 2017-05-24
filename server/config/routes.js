@@ -10,9 +10,8 @@ const saveStoryHandler = require('../handlers/addStory.js');
 const { editStoryHandler, allStoriesHandler } = require('../handlers/editStory.js');
 const deleteStoryHandler = require('../handlers/deleteStory.js');
 //middlewear
-app.use(bodyParser());
+app.use(bodyParser({limit: '50mb'}));
 app.use(passport.initialize());
-// app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../../client/')));
 
 

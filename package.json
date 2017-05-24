@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SeanKinzler/pblog#readme",
   "dependencies": {
+    "aws-sdk": "^2.56.0",
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",

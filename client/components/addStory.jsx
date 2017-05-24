@@ -11,6 +11,7 @@ class AddStory extends Component {
     this.updateTitle = this.updateTitle.bind(this);
     this.updateAuthor = this.updateAuthor.bind(this);
     this.updateBlurb = this.updateBlurb.bind(this);
+    this.uploadPic = this.uploadPic.bind(this);
     if (this.props.toEdit) {
       this.state = {
         author: this.props.toEdit.author,
@@ -34,6 +35,7 @@ class AddStory extends Component {
         this.state.title,
         this.state.author,
         this.state.blurb,
+        this.state.photo,
         this.props.toEdit.id,
         )
     } else {
@@ -42,6 +44,7 @@ class AddStory extends Component {
         this.state.title,
         this.state.author,
         this.state.blurb,
+        this.state.photo,
         )
     }
   }
@@ -85,6 +88,23 @@ class AddStory extends Component {
     this.setState(this.state);
   }
 
+  uploadPic (e) {
+    const reader = new window.FileReader();
+    const file = e.target.files[0];
+    reader.onload = upload => {
+      console.log(upload.target);
+      const newState = Object.assign({}, this.state, {
+        photo: {
+          data_url: upload.target.result,
+          filename: file.name,
+          filetype: file.type,
+        }
+      });
+      this.setState(newState);
+    };
+    reader.readAsDataURL(file);
+  }
+
   componentWillUnmount() {
     this.props.addEditor();
   }
@@ -102,11 +122,13 @@ class AddStory extends Component {
       return (
         <form>
           <div>
-            Title: <input value = {this.state.title} onChange={this.updateTitle} />
+            Title: <input value={this.state.title} onChange={this.updateTitle} />
             <br />
-            Author: <input value = {this.state.author} onChange={this.updateAuthor} />
+            Author: <input value={this.state.author} onChange={this.updateAuthor} />
             <br />
-            Blurb: <input value = {this.state.blurb} onChange={this.blurb} />
+            Blurb: <input value={this.state.blurb} onChange={this.blurb} />
+            <br />
+            Add Photo: <input type="file" onChange={this.uploadPic} />
             <br />
           </div>
           <div id={`editArea${this.props.editorCount}`} dangerouslySetInnerHTML={{__html: this.props.toEdit.html}}>
@@ -122,6 +144,8 @@ class AddStory extends Component {
             Author: <input value = {this.state.author} onChange={this.updateAuthor} />
             <br />
             Blurb: <input value = {this.state.blurb} onChange={this.updateBlurb} />
+            <br />
+            Add Photo: <input type="file" onChange={this.uploadPic} />
             <br />
           </div>
           <div id={`editArea${this.props.editorCount}`}></div>
