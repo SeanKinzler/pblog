@@ -12,6 +12,11 @@ html, body {
   margin: 0;
 }
 
+li { 
+  cursor: pointer; 
+  cursor: hand; 
+}
+
 .navbar-default {
   border-width: 0;
   background-image: none;
@@ -75,6 +80,11 @@ html, body {
 
 hr {
   margin-bottom: 0;
+}
+
+.p-type-1 {
+  cursor: pointer;
+  cursor: hand;
 }
 
 .p-type-1 img {
