@@ -44,19 +44,22 @@ class Home extends Component {
           <h3>ACCESS DENIED</h3>
         }
         <div className="posts container-fluid">
-          <div className="post p-type-1 text-center col-sm-8 col-xs-12" key={posts[0].id} data-index={0}
-            onClick={this.postClickHandler.bind(this)}>
-            <Post post={posts[0]}/>
-            <hr />
+          <div className="col-sm-6 col-xs-12">
+            <div className="post p-type-1 text-center " key={posts[0].id} data-index={0}
+              onClick={this.postClickHandler.bind(this)}>
+              <img className="row" src={`${posts[0].imgPath}`} />
+              <Post post={posts[0]} />
+              <hr />
+            </div>
           </div>
-          <div className="right-articles col-sm-4 col-xs-12">
+          <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
               {rightPosts.map((post, i) => {
                 // console.log(i);
                 // console.log(this.props.posts[posts.length - i - 1])
                 return (<li className="post p-type-2" key={post.id} data-index={i + 1} 
                   onClick={this.postClickHandler.bind(this)}>
-                  <Post post={post}/>
+                  <Post className="row" post={post} />
                   <hr />
                 </li>)
               })}

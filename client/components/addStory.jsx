@@ -92,7 +92,6 @@ class AddStory extends Component {
     const reader = new window.FileReader();
     const file = e.target.files[0];
     reader.onload = upload => {
-      console.log(upload.target);
       const newState = Object.assign({}, this.state, {
         photo: {
           data_url: upload.target.result,
