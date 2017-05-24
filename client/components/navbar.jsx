@@ -19,20 +19,21 @@ export default class NavBar extends Component {
         </div>
         <div className="collapse navbar-collapse" id="navigationbar">
           <ul className="nav navbar-nav nav-ul">
-            <li id="nav1"><a>Action you can take</a></li>
-            <li className="nav2 dropdown">
+            <li className="nav1 dropdown">
               <a className="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Dropdown
+                Action you can take
                 <span className="caret"></span>
               </a>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
+                <li role="separator" className="divider"></li>
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a href="#">Separated link</a></li>
               </ul>
             </li>
+            <li id="nav2"><a>About Us</a></li>
           </ul>
         </div>
       </div>
