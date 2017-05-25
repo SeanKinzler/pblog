@@ -14,14 +14,14 @@ export default class NavBar extends Component {
             <span className="icon-bar"></span>
           </button>
           <a className="navbar-brand brand-link" href="/">
-            <img alt="Brand" className="brand-logo" src="/src/flag.png"></img>
+            <img alt="Brand" className="brand-logo" src="/src/logo.png"></img>
           </a>
         </div>
         <div className="collapse navbar-collapse" id="navigationbar">
           <ul className="nav navbar-nav nav-ul">
             <li className="nav1 dropdown">
               <a className="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Action you can take
+                Take action
                 <span className="caret"></span>
               </a>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">

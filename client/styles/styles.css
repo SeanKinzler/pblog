@@ -20,6 +20,8 @@ li {
 .navbar-default {
   border-width: 0;
   background-image: none;
+  background-color: #000000;
+  border-radius: 0px;
 }
 
 .navbar-brand.brand-link {
