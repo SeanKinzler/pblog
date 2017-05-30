@@ -33,7 +33,7 @@ export default class Footer extends Component {
                 <li><a href="#">Separated link</a></li>
               </ul>
             </li>
-            <li id="nav2"><a>About Us</a></li>
+            <li id="nav2"><a href='/about'>Contact Us</a></li>
           </ul>
         </div>
       </div>

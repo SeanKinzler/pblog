@@ -21,6 +21,10 @@ li {
   cursor: hand; 
 }
 
+hr {
+  margin-bottom: 0;
+}
+
 #App {
   position: relative;
   /*min-height: 400px;*/
@@ -53,9 +57,19 @@ li {
     color: #d1d1d1;
 }
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #f7f7f7;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #f7f7f7;
+    background-color: #3d3d3d;
+}
+
 .btn:focus {
   outline: none;
 }
+
 
 /*Footer CSS*/
 
@@ -105,10 +119,6 @@ li {
 
 .post-blurb {
 
-}
-
-hr {
-  margin-bottom: 0;
 }
 
 .p-type-1 {
