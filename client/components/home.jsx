@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './navbar.jsx';
+import Footer from './footer.jsx';
 import Post from './post.jsx';
 
 import * as Actions from '../actions/index.js';
@@ -39,10 +40,7 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <br />
-        {(this.props.match.params.accessDenied !== undefined) &&
-          <h3>ACCESS DENIED</h3>
-        }
+        <img className="coverPhoto" src="/src/coverPhoto.jpg" />
         <div className="posts container-fluid">
           <div className="col-sm-6 col-xs-12">
             <div className="post p-type-1 text-center " key={posts[0].id} data-index={0}
@@ -79,7 +77,7 @@ class Home extends Component {
             </ul>  
           </div>
         </div>
-
+        <Footer />
       </div>
     );
   }
