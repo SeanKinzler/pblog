@@ -21,6 +21,7 @@ class Home extends Component {
     let post = this.props.posts[target.dataset.index];
     this.props.setPostToRender(post);
     this.props.history.push(`/articles/${post.slug}`);
+    window.scrollTo(0,0);
   }
 
   render() {
@@ -43,7 +44,7 @@ class Home extends Component {
               onClick={this.postClickHandler.bind(this)}>
               <PostLeft post={posts[0]}/>
             </div>
-            <div className="post p-type-1 text-center" key={posts[1].id} data-index={0}
+            <div className="post p-type-1 text-center" key={posts[1].id} data-index={1}
               onClick={this.postClickHandler.bind(this)}>
               <PostLeft post={posts[1]}/>
             </div>
@@ -51,7 +52,7 @@ class Home extends Component {
           <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
               {rightPosts.map((post, i) => {
-                return (<li className="post p-type-2" key={post.id} data-index={i + 1} 
+                return (<li className="post p-type-2" key={post.id} data-index={i + 2} 
                   onClick={this.postClickHandler.bind(this)}>
                   {
                     post.thumbPath !==null && 
@@ -68,7 +69,7 @@ class Home extends Component {
               {bottomPosts.map((post, i) => {
                 console.log(post);
                 return (
-                  <li className="post p-type-3" key={post.id} data-index-num={i + 1} 
+                  <li className="post p-type-3" key={post.id} data-index-num={i + 2} 
                     onClick={this.postClickHandler.bind(this)}>
                   {
                     post.thumbPath !==null && 

@@ -25,10 +25,16 @@ class ArticleRender extends Component {
       return (<Redirect to='/' />)
     } else {
       return (
-        <div className="container-fluid">
-          <h2>{this.props.toRender.title}</h2>
-          <h4>Updated by: {this.props.toRender.author}</h4> 
-          <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
+        <div>
+          {
+            this.props.toRender.bannerPath !== null && 
+            <img className="coverPhoto" src={`${this.props.toRender.bannerPath}`}/>
+          }
+          <div className="container-fluid">
+            <h2>{this.props.toRender.title}</h2>
+            <h4>Updated by: {this.props.toRender.author}</h4> 
+            <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
+          </div>
         </div>
     )}
   }
