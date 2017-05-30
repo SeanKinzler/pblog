@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './navbar.jsx';
-import Footer from './footer.jsx';
 import Post from './post.jsx';
 
 import * as Actions from '../actions/index.js';
@@ -28,7 +26,6 @@ class Home extends Component {
   render() {
     if (this.props.fetching || this.props.posts.length === 0) {
       return (<div>
-          <Navbar />
           <p>Loading...</p>
         </div>)
     }
@@ -39,7 +36,6 @@ class Home extends Component {
     let bottomPosts = posts.slice(7);
     return (
       <div>
-        <Navbar />
         <img className="coverPhoto" src="/src/coverPhoto.jpg" />
         <div className="posts container-fluid">
           <div className="col-sm-6 col-xs-12">
@@ -77,7 +73,6 @@ class Home extends Component {
             </ul>  
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
