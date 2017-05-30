@@ -36,7 +36,7 @@ export const userSignOut = () => {
   }
 }
 
-export const savePost = (html, title, author, blurb, photo, id) => {
+export const savePost = (html, title, author, blurb, banner, thumbnail, bannerRights, thumbRights, id) => {
   console.log('save action')
 
   return dispatch => {
@@ -47,7 +47,10 @@ export const savePost = (html, title, author, blurb, photo, id) => {
         title,
         author,
         blurb,
-        photo,
+        banner, 
+        thumbnail,
+        bannerRights,
+        thumbRights,
         id,
       }).then(res => {
         dispatch(savedPost());
@@ -60,7 +63,10 @@ export const savePost = (html, title, author, blurb, photo, id) => {
         title,
         author,
         blurb,
-        photo,
+        banner, 
+        thumbnail,
+        bannerRights,
+        thumbRights,
       }).then(res => {
         dispatch(savedPost());
       }).catch(err => {

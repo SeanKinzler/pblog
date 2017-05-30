@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Post from './post.jsx';
-
+import PostLeft from './postLeft.jsx';
 import * as Actions from '../actions/index.js';
 import { connect } from 'react-redux';
 
@@ -30,30 +30,34 @@ class Home extends Component {
         </div>)
     }
     let posts = this.props.posts.reverse();
-    console.log(posts);
     // let mainPost = posts.slice(0, 1);
-    let rightPosts = posts.slice(1, 7);
+    let rightPosts = posts.slice(2, 7);
     let bottomPosts = posts.slice(7);
+    console.log(posts[0].imgPath)
     return (
       <div>
         <img className="coverPhoto" src="/src/coverPhoto.jpg" />
         <div className="posts container-fluid">
           <div className="col-sm-6 col-xs-12">
-            <div className="post p-type-1 text-center " key={posts[0].id} data-index={0}
+            <div className="post p-type-1 text-center" key={posts[0].id} data-index={0}
               onClick={this.postClickHandler.bind(this)}>
-              <img className="row" src={`${posts[0].imgPath}`} />
-              <Post post={posts[0]} />
-              <hr />
+              <PostLeft post={posts[0]}/>
+            </div>
+            <div className="post p-type-1 text-center" key={posts[1].id} data-index={0}
+              onClick={this.postClickHandler.bind(this)}>
+              <PostLeft post={posts[1]}/>
             </div>
           </div>
           <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
               {rightPosts.map((post, i) => {
-                // console.log(i);
-                // console.log(this.props.posts[posts.length - i - 1])
                 return (<li className="post p-type-2" key={post.id} data-index={i + 1} 
                   onClick={this.postClickHandler.bind(this)}>
-                  <Post className="row" post={post} />
+                  {
+                    post.thumbPath !==null && 
+                    <img className="thumb col-sm-3 align-items-center" src={`${post.thumbPath}`} />
+                  }
+                  <Post className="col-sm-9 row" post={post} />
                   <hr />
                 </li>)
               })}
@@ -62,10 +66,14 @@ class Home extends Component {
           <div className="bottom-articles col-sm-12">
             <ul className="post-list">
               {bottomPosts.map((post, i) => {
-                // console.log(i);
-                // console.log(this.props.posts[posts.length - i - 1])
-                return (<li className="post p-type-3" key={post.id} data-index-num={i + 1} 
-                  onClick={this.postClickHandler.bind(this)}>
+                console.log(post);
+                return (
+                  <li className="post p-type-3" key={post.id} data-index-num={i + 1} 
+                    onClick={this.postClickHandler.bind(this)}>
+                  {
+                    post.thumbPath !==null && 
+                    <img className="thumb" src={`${post.thumbPath}`} />
+                  }
                   <Post post={post}/>
                   <hr />
                 </li>)

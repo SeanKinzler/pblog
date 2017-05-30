@@ -9,15 +9,18 @@ const saveStoryHandler = (req, res) => {
     }___${
     req.body.title.split(' ').join('')
   }`
-  const imgPath = saveToS3(req.body.photo, newFileName);
-  console.log(imgPath);
+  const bannerPath = saveToS3(req.body.banner, `${newFileName}__banner`);
+  const thumbPath = saveToS3(req.body.thumbnail, `${newFileName}__thumbnail`);
   if (req.body.id) {
     query = `UPDATE Posts SET 
       slug = "${newFileName}", 
       author = "${req.body.author}",
       title = "${req.body.title}",
       blurb = "${req.body.blurb}",
-      imgPath = "${imgPath}"
+      bannerPath = "${bannerPath}",
+      thumbPath = "${thumbPath}",
+      bannerRights = "${req.body.bannerRights}",
+      thumbRights = "${req.body.thumbRights}",
       editDate = CURRENT_TIMESTAMP 
       WHERE id=${req.body.id};`
       sql(`select html from Posts where id=${req.body.id}`, (err, data) => {
@@ -36,9 +39,9 @@ const saveStoryHandler = (req, res) => {
       });
 
   } else {
-    query = `INSERT INTO Posts (slug, author, title, blurb, imgPath) values 
-      ("${newFileName}", "${req.body.author}", "${req.body.title}", 
-      "${req.body.blurb}", "${imgPath}");`
+    query = `INSERT INTO Posts (slug, author, title, blurb, bannerPath, thumbPath, bannerRights, thumbRights) 
+      values ("${newFileName}", "${req.body.author}", "${req.body.title}", "${req.body.blurb}", 
+      "${bannerPath}", "${thumbPath}", "${req.body.bannerRights}", "${req.body.thumbRights}");`
     fs.writeFileSync(path.join(__dirname, `../public/${newFileName}`), req.body.html);
     sql(query, (err, data) => {
     if (err) {

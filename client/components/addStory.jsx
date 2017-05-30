@@ -11,7 +11,10 @@ class AddStory extends Component {
     this.updateTitle = this.updateTitle.bind(this);
     this.updateAuthor = this.updateAuthor.bind(this);
     this.updateBlurb = this.updateBlurb.bind(this);
-    this.uploadPic = this.uploadPic.bind(this);
+    this.uploadBanner = this.uploadBanner.bind(this);
+    this.uploadThumbnail = this.uploadThumbnail.bind(this);
+    this.updateBannerRights = this.updateBannerRights.bind(this);
+    this.updateThumbRights = this.updateThumbRights.bind(this);
     if (this.props.toEdit) {
       this.state = {
         author: this.props.toEdit.author,
@@ -35,7 +38,10 @@ class AddStory extends Component {
         this.state.title,
         this.state.author,
         this.state.blurb,
-        this.state.photo,
+        this.state.banner,
+        this.state.thumbnail,
+        this.state.bannerRights,
+        this.state.thumbRights,
         this.props.toEdit.id,
         )
     } else {
@@ -44,7 +50,10 @@ class AddStory extends Component {
         this.state.title,
         this.state.author,
         this.state.blurb,
-        this.state.photo,
+        this.state.banner,
+        this.state.thumbnail,
+        this.state.bannerRights,
+        this.state.thumbRights,
         )
     }
   }
@@ -88,12 +97,38 @@ class AddStory extends Component {
     this.setState(this.state);
   }
 
-  uploadPic (e) {
+  updateBannerRights (e) {
+    this.state['bannerRights'] = e.target.value;
+    this.setState(this.state);
+  }
+
+  updateThumbRights (e) {
+    this.state['thumbRights'] = e.target.value;
+    this.setState(this.state);
+  }
+
+  uploadBanner (e) {
     const reader = new window.FileReader();
     const file = e.target.files[0];
     reader.onload = upload => {
       const newState = Object.assign({}, this.state, {
-        photo: {
+        banner: {
+          data_url: upload.target.result,
+          filename: file.name,
+          filetype: file.type,
+        }
+      });
+      this.setState(newState);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  uploadThumbnail (e) {
+    const reader = new window.FileReader();
+    const file = e.target.files[0];
+    reader.onload = upload => {
+      const newState = Object.assign({}, this.state, {
+        thumbnail: {
           data_url: upload.target.result,
           filename: file.name,
           filetype: file.type,
@@ -125,9 +160,15 @@ class AddStory extends Component {
             <br />
             Author: <input value={this.state.author} onChange={this.updateAuthor} />
             <br />
-            Blurb: <input value={this.state.blurb} onChange={this.blurb} />
+            Blurb: <input value={this.state.blurb} onChange={this.updateBlurb} />
             <br />
-            Add Photo: <input type="file" onChange={this.uploadPic} />
+            Add Banner: <input type="file" onChange={this.uploadBanner} />
+            <br />
+            Banner Rights: <input value={this.state.bannerRights} onChange={this.updateBannerRights} />
+            <br />
+            Add Thumbnail: <input type="file" onChange={this.uploadThumbnail} />
+            <br />
+            Thumbnail Rights: <input value={this.state.thumbRights} onChange={this.updateThumbRights} />
             <br />
           </div>
           <div id={`editArea${this.props.editorCount}`} dangerouslySetInnerHTML={{__html: this.props.toEdit.html}}>
@@ -144,7 +185,13 @@ class AddStory extends Component {
             <br />
             Blurb: <input value = {this.state.blurb} onChange={this.updateBlurb} />
             <br />
-            Add Photo: <input type="file" onChange={this.uploadPic} />
+            Add Banner: <input type="file" onChange={this.uploadBanner} />
+            <br />
+            Banner Rights: <input value={this.state.bannerRights} onChange={this.updateBannerRights} />
+            <br />
+            Add Thumbnail: <input type="file" onChange={this.uploadThumbnail} />
+            <br />
+            Thumbnail Rights: <input value={this.state.thumbRights} onChange={this.updateThumbRights} />
             <br />
           </div>
           <div id={`editArea${this.props.editorCount}`}></div>
