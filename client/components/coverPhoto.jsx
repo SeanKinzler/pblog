@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 const CoverPhoto = (props) => {
-  let a = (<img className="coverPhoto" src="/src/coverPhoto.jpg" alt=""/>)
-  console.log(a);
   if (props.post.bannerPath) {
     return (
       <div>

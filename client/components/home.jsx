@@ -26,17 +26,11 @@ class Home extends Component {
   }
 
   componentDidUpdate() {
-    // let photo = document.getElementById('cover-photo');
-    // let title = document.getElementById('cover-photo-title');
-    // if(photo !== null) {
-    //   title.style.cssText = `${title.style.cssText}position: absolute; top: ${photo.height-35}px; left: 5px;`;
-    // }
   }
 
   render() {
     if (this.props.fetching || this.props.posts.length === 0) {
       return (<div>
-          <p>Loading...</p>
         </div>)
     }
     let posts = this.props.posts.reverse();
