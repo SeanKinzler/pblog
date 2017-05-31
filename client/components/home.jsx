@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Post from './post.jsx';
 import PostLeft from './postLeft.jsx';
+import CoverPhoto from './coverPhoto.jsx';
 import * as Actions from '../actions/index.js';
 import { connect } from 'react-redux';
 
@@ -24,6 +25,11 @@ class Home extends Component {
     window.scrollTo(0,0);
   }
 
+  componentDidUpdate() {
+    
+    
+  }
+
   render() {
     if (this.props.fetching || this.props.posts.length === 0) {
       return (<div>
@@ -32,27 +38,29 @@ class Home extends Component {
     }
     let posts = this.props.posts.reverse();
     // let mainPost = posts.slice(0, 1);
-    let rightPosts = posts.slice(2, 7);
+    let rightPosts = posts.slice(3, 7);
     let bottomPosts = posts.slice(7);
-    console.log(posts[0].imgPath)
     return (
       <div>
-        <img className="coverPhoto" src="/src/coverPhoto.jpg" />
+        <div className="p-type-0" onClick={this.postClickHandler.bind(this)}
+        key={posts[0].id} data-index={0}>
+          <CoverPhoto post={posts[0]}/>
+        </div>
         <div className="posts container-fluid">
           <div className="col-sm-6 col-xs-12">
-            <div className="post p-type-1 text-center" key={posts[0].id} data-index={0}
-              onClick={this.postClickHandler.bind(this)}>
-              <PostLeft post={posts[0]}/>
-            </div>
             <div className="post p-type-1 text-center" key={posts[1].id} data-index={1}
               onClick={this.postClickHandler.bind(this)}>
               <PostLeft post={posts[1]}/>
+            </div>
+            <div className="post p-type-1 text-center" key={posts[2].id} data-index={2}
+              onClick={this.postClickHandler.bind(this)}>
+              <PostLeft post={posts[2]}/>
             </div>
           </div>
           <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
               {rightPosts.map((post, i) => {
-                return (<li className="post p-type-2" key={post.id} data-index={i + 2} 
+                return (<li className="post p-type-2" key={post.id} data-index={i + 3} 
                   onClick={this.postClickHandler.bind(this)}>
                   {
                     post.thumbPath !==null && 
@@ -67,9 +75,8 @@ class Home extends Component {
           <div className="bottom-articles col-sm-12">
             <ul className="post-list">
               {bottomPosts.map((post, i) => {
-                console.log(post);
                 return (
-                  <li className="post p-type-3" key={post.id} data-index-num={i + 2} 
+                  <li className="post p-type-3" key={post.id} data-index-num={i + 3} 
                     onClick={this.postClickHandler.bind(this)}>
                   {
                     post.thumbPath !==null && 
