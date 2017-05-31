@@ -111,8 +111,9 @@ hr {
 }
 
 #cover-photo-title {
-  position: relative;
-  top: -90px;
+  position: absolute;
+  /*top: -90px;*/
+  top: 100%;
   padding-left: 20px;
   color: white;
   border-color: #000000;
@@ -149,6 +150,10 @@ hr {
 
 .post-blurb {
 
+}
+
+.p-type-0 {
+  position:relative;
 }
 
 .p-type-1 {
