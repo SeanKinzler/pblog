@@ -112,8 +112,7 @@ hr {
 
 #cover-photo-title {
   position: absolute;
-  /*top: -90px;*/
-  top: 100%;
+  bottom: 5%;
   padding-left: 20px;
   color: white;
   border-color: #000000;
