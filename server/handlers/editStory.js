@@ -1,6 +1,7 @@
 let sql  = require('../db/config.js');
 const fs = require('fs');
 const path = require('path');
+let getObject= require('../config/awsConfig.js').getObject;
 
 const editStoryHandler = (req, res) => {
   let query = ``;
@@ -25,17 +26,30 @@ const allStoriesHandler = (req, res) => {
   sql(query, (err, data) => {
     let count = 0;
     data.forEach(post => {
-      fs.readFile(path.join(__dirname, `../public/${post.slug}`), 'utf-8', (err, htmlData) => {
+      console.log(`html/${post.slug}.html`);
+      getObject(`html/${post.slug}.html`, (err, htmlData) => {
         if (err || htmlData === undefined) {
+          console.log('get err: ', err);
           post.html = '<p>Load Error</p>';
         } else {
-          post.html = htmlData;
+          post.html = htmlData.Body.toString('utf-8');
         }
         count = count + 1
         if (count === data.length) {
           res.send(data);
         }
       })
+      // fs.readFile(path.join(__dirname, `../public/${post.slug}`), 'utf-8', (err, htmlData) => {
+      //   if (err || htmlData === undefined) {
+      //     post.html = '<p>Load Error</p>';
+      //   } else {
+      //     post.html = htmlData;
+      //   }
+      //   count = count + 1
+      //   if (count === data.length) {
+      //     res.send(data);
+      //   }
+      // })
     })
     
   })

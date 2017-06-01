@@ -1,10 +1,11 @@
 const mysql = require('mysql');
 
+const database = process.env.DB || 'PBlogDev';
 const db = mysql.createConnection({
   host: process.env.DBHOST,
   user: process.env.ROOTUSER,
   password: process.env.DBPASSWORD,
-  database: 'PBlog',
+  database: database,
   ssl: 'Amazon RDS',
 });
 db.connect(err => {

@@ -24,7 +24,6 @@ class ArticleRender extends Component {
     } else if (this.props.toRender === undefined) {
       return (<Redirect to='/' />)
     } else {
-      console.log(this.props.toRender);
       return (
         <div>
           {

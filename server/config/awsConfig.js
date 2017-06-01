@@ -12,13 +12,38 @@ aws.config.update({
 
 aws.config.baseUrl = AWS_BASE_URL;
 
-const saveToS3 = (file, fileName) => {
-  console.log(file.data_url.slice(0,30));
+const getObject = (key, cb) => {
+  s3 = new aws.S3();
+  s3.getObject({
+    Bucket: 'poliblogbucket',
+    Key: key,
+  }, cb)
+}
+
+const saveHtmlToS3 = (file, key) => {
+  const params = {
+    Bucket: 'poliblogbucket',
+    ACL: 'public-read',
+    Key: key,
+    Body: file,
+    ContentType: 'html/text',
+  }
+  s3 = new aws.S3();
+  s3.putObject(params, (err, data) => {
+    if (err) {
+      throw err;
+      console.log('s3 bucket err: ', err)
+    }
+  })
+  return `${aws.config.baseUrl}${key}`;
+}
+
+const saveImageToS3 = (file, key) => {
   buf = new Buffer(file.data_url.replace(/^data:image\/\w+;base64,/, ""),'base64')
   const params = {
     Bucket: 'poliblogbucket',
     ACL: 'public-read',
-    Key: `images/${fileName}.jpg`,
+    Key: key,
     Body: buf,
     ContentEncoding: 'base64',
     ContentType: 'image/jpeg',
@@ -31,7 +56,11 @@ const saveToS3 = (file, fileName) => {
     } else {
     }
   })
-  return `${aws.config.baseUrl}images/${fileName}.jpg`;
+  return `${aws.config.baseUrl}${key}`;
 }
 
-module.exports = saveToS3;
+module.exports = {
+  saveImageToS3, 
+  getObject,
+  saveHtmlToS3,
+};

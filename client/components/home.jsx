@@ -34,7 +34,7 @@ class Home extends Component {
         </div>)
     }
     let posts = this.props.posts.reverse();
-    // let mainPost = posts.slice(0, 1);
+    let leftPosts = posts.slice(1, 3);
     let rightPosts = posts.slice(3, 7);
     let bottomPosts = posts.slice(7);
     return (
@@ -45,14 +45,16 @@ class Home extends Component {
         </div>
         <div className="posts container-fluid">
           <div className="col-sm-6 col-xs-12">
-            <div className="post p-type-1 text-center" key={posts[1].id} data-index={1}
-              onClick={this.postClickHandler.bind(this)}>
-              <PostLeft post={posts[1]}/>
-            </div>
-            <div className="post p-type-1 text-center" key={posts[2].id} data-index={2}
-              onClick={this.postClickHandler.bind(this)}>
-              <PostLeft post={posts[2]}/>
-            </div>
+            {
+              leftPosts.map((post, i) => {
+                return (
+                  <div className="post p-type-1 text-center" key={posts.id} data-index={i + 1}
+                    onClick={this.postClickHandler.bind(this)}>
+                    <PostLeft post={post}/>
+                  </div>
+                  )
+              })
+            }
           </div>
           <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
@@ -73,7 +75,7 @@ class Home extends Component {
             <ul className="post-list">
               {bottomPosts.map((post, i) => {
                 return (
-                  <li className="post p-type-3" key={post.id} data-index-num={i + 3} 
+                  <li className="post p-type-3" key={post.id} data-index-num={i + 7} 
                     onClick={this.postClickHandler.bind(this)}>
                   {
                     post.thumbPath !==null && 

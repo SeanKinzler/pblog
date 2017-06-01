@@ -1,7 +1,9 @@
 let sql  = require('../db/config.js');
 let fs = require('fs');
 let path = require('path');
-let saveToS3 = require('../config/awsConfig.js');
+let saveImageToS3 = require('../config/awsConfig.js').saveImageToS3;
+let saveHtmlToS3 = require('../config/awsConfig.js').saveHtmlToS3;
+
 const saveStoryHandler = (req, res) => {
   let query = ``;
   let newFileName = `${
@@ -9,11 +11,11 @@ const saveStoryHandler = (req, res) => {
     }___${
     req.body.title.split(' ').join('').slice(0,20)
   }`
-  if (req.body.banner) {
-    const bannerPath = saveToS3(req.body.banner, `${newFileName}__banner`);
+  if (req.body.banner !== undefined) {
+    const bannerPath = saveImageToS3(req.body.banner, `images/${newFileName}__banner.jpg`);
   }
-  if (req.body.thumbnail) {
-    const thumbPath = saveToS3(req.body.thumbnail, `${newFileName}__thumbnail`);
+  if (req.body.thumbnail !== undefined) {
+    const thumbPath = saveImageToS3(req.body.thumbnail, `images/${newFileName}__thumbnail.jpg`);
   }
   if (req.body.blurb) {
     req.body.blurb = req.body.blurb.split('\"').join('\\\"')
@@ -46,12 +48,13 @@ const saveStoryHandler = (req, res) => {
       });
 
   } else {
-    query = `INSERT INTO Posts (slug, author, title, blurb, bannerPath, thumbPath, bannerRights, thumbRights) 
+    const htmlPath = saveHtmlToS3(req.body.html, `html/${newFileName}.html`);
+    query = `INSERT INTO Posts (slug, author, title, blurb, bannerPath, thumbPath, bannerRights, thumbRights, htmlPath) 
       values ("${newFileName}", "${req.body.author}", "${req.body.title}", "${req.body.blurb}", 
       "${typeof bannerPath != 'undefined' ? bannerPath : null}", 
       "${typeof thumbPath != 'undefined' ? thumbPath : null}", 
-      "${req.body.bannerRights}", "${req.body.thumbRights}");`
-    fs.writeFileSync(path.join(__dirname, `../public/${newFileName}`), req.body.html);
+      "${req.body.bannerRights}", "${req.body.thumbRights}", "html/${newFileName}.html");`
+    // fs.writeFileSync(path.join(__dirname, `../public/${newFileName}`), req.body.html);
     sql(query, (err, data) => {
       if (err) {
         res.sendStatus(500);
