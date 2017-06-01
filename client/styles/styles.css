@@ -110,6 +110,16 @@ hr {
   /*max-height: 800px;*/
 }
 
+.cover-photo-caption {
+  margin-top: 5px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.cover-photo-caption hr {
+  margin-top: 5px;
+}
+
 #cover-photo-title {
   position: absolute;
   bottom: 5%;

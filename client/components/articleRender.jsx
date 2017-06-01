@@ -30,6 +30,13 @@ class ArticleRender extends Component {
             this.props.toRender.bannerPath !== null && 
             <img id="cover-photo" src={`${this.props.toRender.bannerPath}`}/>
           }
+          {
+            this.props.toRender.bannerRights !== null && 
+            <div className="cover-photo-caption text-center">
+              <p className="">{this.props.toRender.bannerRights}</p>
+              <hr />
+            </div>
+          }
           <div className="container-fluid">
             <h2>{this.props.toRender.title}</h2>
             <h4>Updated by: {this.props.toRender.author}</h4> 
