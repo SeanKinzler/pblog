@@ -46,6 +46,18 @@ export default class Footer extends Component {
             </li>
             <li id="nav2"><a href='/about'>Contact Us</a></li>
           </ul>
+          <ul className="nav navbar-nav nav-ul navbar-right">
+            <li className="socialMediaButton">
+              <a href="https://www.facebook.com/PoliCure-321007481646272/">
+                <i className="fa fa-facebook"></i> 
+              </a>
+            </li>
+            <li className="socialMediaButton">
+              <a href="https://twitter.com/PoliCure">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
