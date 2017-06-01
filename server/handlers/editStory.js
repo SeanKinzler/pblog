@@ -26,8 +26,8 @@ const allStoriesHandler = (req, res) => {
   sql(query, (err, data) => {
     let count = 0;
     data.forEach(post => {
-      console.log(`html/${post.slug}.html`);
-      getObject(`html/${post.slug}.html`, (err, htmlData) => {
+      let tempKey = `html/${post.slug}.html`.split('\"').join('\\\"');
+      getObject(tempKey, (err, htmlData) => {
         if (err || htmlData === undefined) {
           console.log('get err: ', err);
           post.html = '<p>Load Error</p>';

@@ -34,7 +34,7 @@ const saveHtmlToS3 = (file, key) => {
       throw err;
       console.log('s3 bucket err: ', err)
     }
-  })
+  });
   return `${aws.config.baseUrl}${key}`;
 }
 
