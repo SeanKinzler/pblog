@@ -39,7 +39,7 @@ class ArticleRender extends Component {
           }
           <div className="container-fluid">
             <h2>{this.props.toRender.title}</h2>
-            <h4>Updated by: {this.props.toRender.author}</h4> 
+            <h4>By: {this.props.toRender.author}</h4> 
             <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
           </div>
         </div>
