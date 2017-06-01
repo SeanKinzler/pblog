@@ -18,6 +18,11 @@ class ArticleRender extends Component {
     }
   }
 
+  getDate() {
+    let date = this.props.toRender.creationDate.split('T')[0].split('-');
+    return `${date[1]}-${date[2]}-${date[0]}`
+  }
+
   render() {
     if (store.getState().posts.fetching || this.props.toRender === null) {
       return (<div>Loading...</div>)
@@ -40,6 +45,11 @@ class ArticleRender extends Component {
           <div className="container-fluid">
             <h2>{this.props.toRender.title}</h2>
             <h4>By: {this.props.toRender.author}</h4> 
+            <p className="article-date">
+              {
+                this.getDate()
+              }
+            </p>
             <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
           </div>
         </div>

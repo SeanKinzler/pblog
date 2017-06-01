@@ -104,20 +104,11 @@ hr {
   height: 80px;
 }
 
+
 /*Homepage CSS*/
 #cover-photo {
   width: 100%;
   /*max-height: 800px;*/
-}
-
-.cover-photo-caption {
-  margin-top: 5px;
-  font-style: italic;
-  font-size: 14px;
-}
-
-.cover-photo-caption hr {
-  margin-top: 5px;
 }
 
 #cover-photo-title {
@@ -157,10 +148,6 @@ hr {
   font-style: italic;
 }
 
-.post-blurb {
-
-}
-
 .p-type-0 {
   position:relative;
 }
@@ -189,3 +176,18 @@ hr {
   font-size: 24px;
 }
 
+
+/*article render css*/
+.cover-photo-caption {
+  margin-top: 5px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.cover-photo-caption hr {
+  margin-top: 5px;
+}
+
+.article-date {
+  font-style: italic;
+}
