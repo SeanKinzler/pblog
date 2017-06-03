@@ -11,6 +11,7 @@ class Home extends Component {
     super(props);
     this.props = props;
     this.props.getPosts();
+
   }
 
   postClickHandler(e) {
@@ -21,7 +22,7 @@ class Home extends Component {
     }
     let post = this.props.posts[target.dataset.index];
     this.props.setPostToRender(post);
-    this.props.history.push(`/articles/${post.slug}`);
+    this.props.hist.push(`/articles/${post.slug}`);
     window.scrollTo(0,0);
   }
 

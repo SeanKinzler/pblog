@@ -12,20 +12,22 @@ import jwt from '../components/jwt.jsx';
 import { PrivateRoute } from '../utils/auth.jsx';
 import ArticleRender from '../components/articleRender.jsx';
 import AboutUs from '../components/aboutUs.jsx';
+import PropsRoute from './propsRoutes.jsx'
 
-const Routes = () => {
+
+const Routes = (props) => {
   return (
     <div>
       <Navbar />
-      <Route exact path='/' component={ Home } />
-      <Route path='/accessDenied' component={ Home } />
-      <PrivateRoute path='/addStory' component={ AddStory }/>
-      <PrivateRoute path='/adminMenu' component={ AdminMenu }/>
-      <PrivateRoute path='/editArticles' component={ EditArticles }/>
-      <Route path='/jwt/:token' component={ jwt } />
-      <Route path='/articles/:slug' component={ ArticleRender } />
-      <Route path='/about' component={ AboutUs } />
-      <Footer />
+      <PropsRoute exact path='/' hist={props.hist} component={ Home } />
+      <Route path='/accessDenied' hist={props.hist} component={ Home } />
+      <PrivateRoute path='/addStory' hist={props.hist} component={ AddStory }/>
+      <PrivateRoute path='/adminMenu' hist={props.hist} component={ AdminMenu }/>
+      <PrivateRoute path='/editArticles' hist={props.hist} component={ EditArticles }/>
+      <Route path='/jwt/:token' hist={props.hist} component={ jwt } />
+      <Route path='/articles/:slug' hist={props.hist} component={ ArticleRender } />
+      <Route path='/about' hist={props.hist} component={ AboutUs } />
+      <Footer hist={props.hist}/>
     </div>
   )
 }

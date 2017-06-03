@@ -26,6 +26,7 @@ const allStoriesHandler = (req, res) => {
   sql(query, (err, data) => {
     let count = 0;
     data.forEach(post => {
+      console.log(post.creationDate);
       let tempKey = `html/${post.slug}.html`.split('\"').join('\\\"');
       getObject(tempKey, (err, htmlData) => {
         if (err || htmlData === undefined) {
