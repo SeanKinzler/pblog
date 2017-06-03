@@ -20,7 +20,6 @@ class ArticleRender extends Component {
 
   getDate() {
     let date = this.props.toRender.creationDate.split('T')[0].split('-');
-    // console.log(this.props.toRender.creationDate);
     return `${date[1]}-${date[2]}-${date[0]}`
   }
 

@@ -16,19 +16,20 @@ export default class Analytics extends Component {
     }
     visitor.pageview(this.props.history.location.pathname, err => {
       if(err) {
-        // console.log('analytics err: ', err);
+        console.log('analytics err: ', err);
+      } else {
+        console.log('sent visitor page view');
       }
     });
     this.visitor = visitor;
-    
   }
   componentDidMount() {
     this.props.history.listen((location, action) => {
-      this.visitor.pageview(location.pathName, err => {
+      this.visitor.pageview(this.props.history.location.pathname, err => {
         if(err) {
-          console.log('analytics err: '), err
+          console.log('analytics err: ', err);
         } else {
-          console.log('sent visitor page view');          
+          console.log('sent visitor page view');
         }
       });
     });

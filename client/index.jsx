@@ -8,10 +8,6 @@ import createHistory from 'history/createBrowserHistory';
 import Analytics from './config/analytics.jsx';
 
 const history = createHistory();
-history.listen((location, action) => {
-  console.log('location: ', location);
-  console.log('action: ', action);
-})
 render((
   <Provider store={store}>
     <Router history={history}>
