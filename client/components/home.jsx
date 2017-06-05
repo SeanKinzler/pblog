@@ -22,6 +22,7 @@ class Home extends Component {
     }
     let post = this.props.posts[target.dataset.index];
     this.props.setPostToRender(post);
+    this.props.hist.push(`/articles/${post.slug}`);
     this.props.history.push(`/articles/${post.slug}`);
     window.scrollTo(0,0);
   }
