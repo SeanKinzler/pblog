@@ -178,16 +178,47 @@ hr {
 
 
 /*article render css*/
-.cover-photo-caption {
+.article-photo-caption {
   margin-top: 5px;
   font-style: italic;
   font-size: 14px;
+
 }
 
-.cover-photo-caption hr {
-  margin-top: 5px;
+.article-photo-caption hr {
+  margin-top: 0px;
+}
+
+.article-photo-caption p {
+  margin-bottom: 0px;
 }
 
 .article-date {
   font-style: italic;
 }
+
+.article-picture-container {
+  margin-bottom: 15px;
+}
+
+#article-photo {
+  width: 100%;
+}
+
+#article-left-col {
+  padding-left: 10%;
+}
+
+.article-author,
+.article-date {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+#article p {
+  text-indent: 5px;
+}
+
+
+
+

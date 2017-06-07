@@ -31,26 +31,34 @@ class ArticleRender extends Component {
     } else {
       return (
         <div>
-          {
-            this.props.toRender.bannerPath !== null && 
-            <img id="cover-photo" src={`${this.props.toRender.bannerPath}`}/>
-          }
-          {
-            this.props.toRender.bannerRights !== null && 
-            <div className="cover-photo-caption text-center">
-              <p className="">{this.props.toRender.bannerRights}</p>
-              <hr />
-            </div>
-          }
-          <div className="container-fluid">
-            <h2>{this.props.toRender.title}</h2>
-            <h4>By: {this.props.toRender.author}</h4> 
-            <p className="article-date">
+          <div className="article-container container-fluid row">
+            <div id="article-left-col" className="col-sm-9">
+              <h2 className="article-title">{this.props.toRender.title}</h2>
+              <div className="article-picture-container">
               {
-                this.getDate()
+                this.props.toRender.bannerPath !== null && 
+                <img id="article-photo" src={`${this.props.toRender.bannerPath}`}/>
               }
-            </p>
-            <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
+              {
+                this.props.toRender.bannerRights !== null && 
+                <div className="article-photo-caption text-center">
+                  <p className="">{this.props.toRender.bannerRights}</p>
+                  <hr />
+                </div>
+              }
+              </div>
+              <p className="article-author">By: {this.props.toRender.author}</p> 
+              <p className="article-date">
+                {
+                  this.getDate()
+                }
+              </p>
+              <br />
+              <div id="Article" dangerouslySetInnerHTML={{__html: this.props.toRender.html}}></div>
+            </div>
+            <div className="col-sm-3">
+              <p></p>
+            </div>
           </div>
         </div>
     )}

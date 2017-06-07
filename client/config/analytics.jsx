@@ -18,7 +18,7 @@ export default class Analytics extends Component {
       if(err) {
         console.log('analytics err: ', err);
       } else {
-        console.log('sent visitor page view');
+        
       }
     });
     this.visitor = visitor;
@@ -29,7 +29,6 @@ export default class Analytics extends Component {
         if(err) {
           console.log('analytics err: ', err);
         } else {
-          console.log('sent visitor page view');
         }
       });
     });
