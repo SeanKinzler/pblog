@@ -2,7 +2,9 @@ import { checkAuth } from '../utils/auth.jsx';
 import axios from 'axios';
 
 export const USER_SIGN_IN = 'USER_SIGN_IN';
+export const ADMIN_SIGN_IN = 'ADMIN_SIGN_IN';
 export const USER_SIGN_OUT = 'USER_SIGN_OUT';
+export const ADMIN_SIGN_OUT = 'ADMIN_SIGN_OUT';
 export const SAVE_POST = 'SAVE_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const SET_STATE_POSTS = 'SET_STATE_POSTS';
@@ -28,9 +30,26 @@ export const userSignIn = (token) => {
   }
 }
 
+export const adminSignIn = (token) => {
+  return {
+    type: ADMIN_SIGN_IN,
+    token: token,
+  }
+}
+
 export const userSignOut = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('name');
+  localStorage.removeItem('poliCureid');
+  return {
+    type: USER_SIGN_OUT
+  }
+}
+
+export const adminSignOut = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('name');
+  localStorage.removeItem('poliCureid');
   return {
     type: USER_SIGN_OUT
   }

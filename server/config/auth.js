@@ -21,13 +21,13 @@ passport.use(new GoogleStrategy({
     sqlQuery(`select * from Users where googleId = ${profile.id}`, (err, rows) => {
       if (err) {
         console.log(`login error: ${err}`);
-        done()
+        done(`login error: ${err}`)
       } else if (rows[0] !== undefined) {
-        token = jwt.createToken(rows[0].name);
-        done()
+        token = jwt.createToken(`${rows[0].googleId}%%${rows[0].name}`);
+        done(null, rows[0])
       } else {
         console.log('attempted Login from: ', profile)
-        done();
+        done(null);
       }
     })
   }

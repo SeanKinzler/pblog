@@ -33,6 +33,9 @@ export default class NavBar extends Component {
                 <li><a href="#">Separated link</a></li>
               </ul>
             </li>
+            <li className="login-button">
+              <a href='/login'>Login</a>
+            </li>
             <li className="socialMediaButton">
               <a href="https://www.facebook.com/PoliCure-321007481646272/">
                 <i className="fa fa-facebook"></i> 

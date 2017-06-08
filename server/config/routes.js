@@ -4,7 +4,7 @@ const bodyParser = require('body-parser').json;
 const app = express();
 const {pasteToken, passport} = require('./auth.js');
 const sqlQuery = require('../db/config.js');
-const {verifyToken, jwtMiddleware, checkToken} = require('./jwtFns.js');
+const {verifyToken, jwtMiddleware, checkToken, checkAdminToken} = require('./jwtFns.js');
 
 const saveStoryHandler = require('../handlers/addStory.js');
 const { editStoryHandler, allStoriesHandler } = require('../handlers/editStory.js');
@@ -21,20 +21,30 @@ app.get('/admin',
     ['https://www.googleapis.com/auth/plus.login']
   })
 );
+
+app.get('/login',
+  passport.authenticate('google', { scope: 
+    ['https://www.googleapis.com/auth/plus.login']
+  })
+);
  
 app.get('/auth/google/callback', (req, res) => {
-  passport.authenticate( 'google', (err, user, info) => {
+  passport.authenticate('google', (err, user, info) => {
     token = pasteToken();
-    console.log(token);
-    if (token === undefined) {
+    console.log(err, user, info);
+
+    if (token === undefined && user.googleId === verify(token)) {
       res.redirect(`/`)
+    } else if (user.admin === 1){
+      res.redirect(`/adminJwt/${token}%%${user.name}`);
     } else {
-      res.redirect(`/jwt/${token}%%${verifyToken(token)}`);
+      res.redirect(`/jwt/${token}%%${user.name}`)
     }
   })(req, res)
 });
 
 app.post('/api/auth/verify', checkToken);
+app.post('/api/auth/verifyAdmin', checkAdminToken);
 app.get('/api/allStories', allStoriesHandler);
 
 //jwt middlewear for api requests.
