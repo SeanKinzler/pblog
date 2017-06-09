@@ -4,7 +4,7 @@ const CoverPhoto = (props) => {
   if (props.post.bannerPath) {
     return (
       <div>
-        <img id="cover-photo" src="/src/coverPhoto.jpg" alt=""/>
+        <img id="cover-photo" src={props.post.bannerPath} alt=""/>
         <h2 id="cover-photo-title">{props.post.title}</h2>
       </div>
     )
