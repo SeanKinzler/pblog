@@ -171,13 +171,16 @@ hr {
 }
 
 .thumb {
-  /*margin-right: 10px;*/
-  max-width: 25%;
+  max-width: 70%;
 }
 
 .caption {
   font-style: italic;
   font-size: 10px;
+}
+
+.post.p-type-2 {
+  text-align: center;
 }
 
 .p-type-2 .post-title {
@@ -235,8 +238,11 @@ hr {
 
 @media (min-width: 576px) {
   .thumb {
-    vertical-align: middle;
-    text-align: center;
+    max-width: 25%;
+  }
+
+  .post.p-type-2 {
+    text-align: left;
   }
 }
 
