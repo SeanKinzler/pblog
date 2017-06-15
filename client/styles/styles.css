@@ -23,6 +23,14 @@ li {
 
 hr {
   margin-bottom: 0;
+  border: none;
+  height: 1px;
+  color: #3d3d3d;
+  background-color: #3d3d3d;
+}
+
+.clear-float {
+  clear: both;
 }
 
 #App {
@@ -163,8 +171,8 @@ hr {
 }
 
 .thumb {
-  margin-right: 10px;
-  width: 40%;
+  /*margin-right: 10px;*/
+  max-width: 25%;
 }
 
 .caption {
@@ -173,9 +181,13 @@ hr {
 }
 
 .p-type-2 .post-title {
-  font-size: 24px;
+  font-size: 20px;
 }
 
+.p-type-2 hr {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 /*article render css*/
 .article-photo-caption {
@@ -221,5 +233,11 @@ hr {
 }
 
 
+@media (min-width: 576px) {
+  .thumb {
+    vertical-align: middle;
+    text-align: center;
+  }
+}
 
 

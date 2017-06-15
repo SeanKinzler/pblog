@@ -60,21 +60,26 @@ class Home extends Component {
           </div>
           <div className="right-articles col-sm-6 col-xs-12">
             <ul className="post-list">
-              {rightPosts.map((post, i) => {
-                return (<li className="post p-type-2" key={post.id} data-index={i + 3} 
-                  onClick={this.postClickHandler.bind(this)}>
-                  {
-                    post.thumbPath !== "null" && 
-                    <img className="thumb col-sm-3 align-items-center" src={`${post.thumbPath}`} />
-                  }
-                  {
-                    post.bannerPath !== "null" && post.thumbPath === "null" &&
-                    <img className="thumb col-sm-3 align-items-center" src={`${post.bannerPath}`} />
-                  }
-                  <Post className="col-sm-9 row" post={post} />
-                  <hr />
-                </li>)
-              })}
+              {
+                rightPosts.map((post, i) => {
+                return (
+                    <div className="post p-type-2" key={post.id} data-index={i + 3} 
+                    onClick={this.postClickHandler.bind(this)}>
+                    {
+                      post.thumbPath !== "null" && 
+                      <img className="thumb col-sm-3" src={`${post.thumbPath}`} />
+                    }
+                    {
+                      post.bannerPath !== "null" && post.thumbPath === "null" &&
+                      <img className="thumb col-sm-3" src={`${post.bannerPath}`} />
+                    }
+                    <Post className="col-sm-9" post={post} />
+                    <hr className="col-sm-12"/>
+                    <div className="clear-float"></div>
+                    </div>
+                  )
+              })
+            }
             </ul>  
           </div>
           <div className="bottom-articles col-sm-12">
@@ -86,6 +91,10 @@ class Home extends Component {
                   {
                     post.thumbPath !==null && 
                     <img className="thumb" src={`${post.thumbPath}`} />
+                  }
+                  {
+                    post.bannerPath !== "null" && post.thumbPath === "null" &&
+                    <img className="thumb col-sm-3" src={`${post.bannerPath}`} />
                   }
                   <Post post={post}/>
                   <hr />
