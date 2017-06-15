@@ -50,7 +50,7 @@ class Home extends Component {
             {
               leftPosts.map((post, i) => {
                 return (
-                  <div className="post p-type-1 text-center" key={posts.id} data-index={i + 1}
+                  <div className="post p-type-1 text-center" key={post.id} data-index={i + 1}
                     onClick={this.postClickHandler.bind(this)}>
                     <PostLeft post={post}/>
                   </div>
