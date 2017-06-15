@@ -107,8 +107,8 @@ hr {
 
 /*Homepage CSS*/
 #cover-photo {
-  width: 100%;
-  /*max-height: 800px;*/
+  max-height: 400px;
+  width: auto;
 }
 
 #cover-photo-title {
@@ -207,6 +207,7 @@ hr {
 
 #article-left-col {
   padding-left: 10%;
+  padding-right: 10%;
 }
 
 .article-author,

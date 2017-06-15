@@ -65,7 +65,7 @@ const checkAdminToken = (req, res) => {
           res.sendStatus(301);
         } else if (rows && rows[0].admin === 1){
           //respond with username if valid
-          res.send(decoded).split('%%')[1];
+          res.send(decoded.split('%%')[1]);
         } else {
           console.log('Insufficient Privledges');
           res.sendStatus(301);
