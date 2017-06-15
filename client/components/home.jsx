@@ -64,8 +64,12 @@ class Home extends Component {
                 return (<li className="post p-type-2" key={post.id} data-index={i + 3} 
                   onClick={this.postClickHandler.bind(this)}>
                   {
-                    post.thumbPath !==null && 
+                    post.thumbPath !== "null" && 
                     <img className="thumb col-sm-3 align-items-center" src={`${post.thumbPath}`} />
+                  }
+                  {
+                    post.bannerPath !== "null" && post.thumbPath === "null" &&
+                    <img className="thumb col-sm-3 align-items-center" src={`${post.bannerPath}`} />
                   }
                   <Post className="col-sm-9 row" post={post} />
                   <hr />

@@ -107,8 +107,7 @@ hr {
 
 /*Homepage CSS*/
 #cover-photo {
-  max-height: 400px;
-  width: auto;
+  width: 100%;
 }
 
 #cover-photo-title {
@@ -165,6 +164,7 @@ hr {
 
 .thumb {
   margin-right: 10px;
+  width: 40%;
 }
 
 .caption {
