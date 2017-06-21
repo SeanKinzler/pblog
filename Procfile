@@ -1,1 +1,1 @@
-web: forever server/server.js
+web: forever start server/server.js
