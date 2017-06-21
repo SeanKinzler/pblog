@@ -26,7 +26,6 @@ const allStoriesHandler = (req, res) => {
   sql(query, (err, data) => {
     let count = 0;
     data.forEach(post => {
-      console.log(post.creationDate);
       let tempKey = `html/${post.slug}.html`.split('\"').join('\\\"');
       getObject(tempKey, (err, htmlData) => {
         if (err || htmlData === undefined) {
@@ -40,17 +39,6 @@ const allStoriesHandler = (req, res) => {
           res.send(data);
         }
       })
-      // fs.readFile(path.join(__dirname, `../public/${post.slug}`), 'utf-8', (err, htmlData) => {
-      //   if (err || htmlData === undefined) {
-      //     post.html = '<p>Load Error</p>';
-      //   } else {
-      //     post.html = htmlData;
-      //   }
-      //   count = count + 1
-      //   if (count === data.length) {
-      //     res.send(data);
-      //   }
-      // })
     })
     
   })

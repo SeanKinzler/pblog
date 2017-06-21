@@ -20,7 +20,8 @@ const dbQuery = (query, callback) => {
     if (error) {
       console.log('DB QUERY ERROR: ', error);
     };
-    callback(null, results);
+    if (callback) 
+      callback(null, results);
   });
 };
 

@@ -34,7 +34,7 @@ export default class NavBar extends Component {
               </ul>
             </li>
             <li className="login-button">
-              <a href='/login'>Login</a>
+              <a href='/subscribe'>Subscribe</a>
             </li>
             <li className="socialMediaButton">
               <a href="https://www.facebook.com/PoliCure-321007481646272/">
