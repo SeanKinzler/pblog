@@ -20,6 +20,7 @@ export const SET_POST_TO_RENDER = 'SET_POST_TO_RENDER';
 export const DELETING_POST = 'DELETING_POST';
 export const DELETED_POST = 'DELETED_POST';
 export const DELETE_POST_ERROR = 'DELETE_POST_ERROR';
+export const GET_AUTHORS = 'GET_AUTHORS';
 
 axios.defaults.headers.common['jwt'] = localStorage.token;
 
@@ -55,9 +56,7 @@ export const adminSignOut = () => {
   }
 }
 
-export const savePost = (html, title, author, blurb, banner, thumbnail, bannerRights, thumbRights, id) => {
-  console.log('save action')
-
+export const savePost = (html, title, author, blurb, banner, thumbnail, bannerRights, thumbRights, authorId, id) => {
   return dispatch => {
     dispatch(savingPost());
     if (id !== undefined) {
@@ -70,6 +69,7 @@ export const savePost = (html, title, author, blurb, banner, thumbnail, bannerRi
         thumbnail,
         bannerRights,
         thumbRights,
+        authorId,
         id,
       }).then(res => {
         dispatch(savedPost());
@@ -86,6 +86,7 @@ export const savePost = (html, title, author, blurb, banner, thumbnail, bannerRi
         thumbnail,
         bannerRights,
         thumbRights,
+        authorId
       }).then(res => {
         dispatch(savedPost());
       }).catch(err => {

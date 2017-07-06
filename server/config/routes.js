@@ -9,6 +9,7 @@ const {verifyToken, jwtMiddleware, checkToken, checkAdminToken} = require('./jwt
 const saveStoryHandler = require('../handlers/addStory.js');
 const { editStoryHandler, allStoriesHandler } = require('../handlers/editStory.js');
 const deleteStoryHandler = require('../handlers/deleteStory.js');
+const getAuthorsHandler = require('../handlers/getAuthorsHandler.js');
 const subscribeHandler = require('../handlers/subscribeHandler.js');
 //middlewear
 app.use(bodyParser({limit: '50mb'}));
@@ -59,6 +60,8 @@ app.post('/api/addStory', saveStoryHandler);
 app.get('/api/editStory', editStoryHandler);
 
 app.delete('/api/editStory', deleteStoryHandler);
+
+app.get('/api/getAuthors', getAuthorsHandler);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../client/', 'index.html'));

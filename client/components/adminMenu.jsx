@@ -7,6 +7,7 @@ class AdminMenu extends Component {
   constructor (props) {
     super(props);
     this.props = props;
+    this.props.getAuthors();
   }
 
   logoutHandler(e) {

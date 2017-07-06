@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const TakeAction = (props) => {
   return (
     <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="www.resistbot.io">Send a message to your representatives</a></li>
+      <li><a href="https://www.resistbot.io">Send a message to your representatives</a></li>
       <li><a href="https://www.indivisibleguide.com/act-locally/">Join local events</a></li>
       <li><a href="https://secure.actblue.com/contribute/page/noahca">Donate to campaigns</a></li>
       <li role="separator" className="divider"></li>

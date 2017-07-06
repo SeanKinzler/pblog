@@ -17,15 +17,17 @@ class AddStory extends Component {
     this.updateThumbRights = this.updateThumbRights.bind(this);
     if (this.props.toEdit) {
       this.state = {
-        author: this.props.toEdit.author,
+        author: this.props.toEdit.author, //change to author Id, dropdown
         title: this.props.toEdit.title,
         blub: this.props.toEdit.blurb,
+        authorId: null,
       }
     } else {
       this.state = {
-        author: localStorage.name,
+        author: localStorage.name, // change to authorId, dropdown
         title: 'untitled',
         blurb: 'none',
+        authorId: null,
       }
     }
   }
@@ -42,6 +44,7 @@ class AddStory extends Component {
         this.state.thumbnail,
         this.state.bannerRights,
         this.state.thumbRights,
+        this.state.authorId,
         this.props.toEdit.id,
         )
     } else {
@@ -54,6 +57,7 @@ class AddStory extends Component {
         this.state.thumbnail,
         this.state.bannerRights,
         this.state.thumbRights,
+        this.state.authorId,
         )
     }
   }
@@ -205,6 +209,7 @@ class AddStory extends Component {
 const mapStateToProps = (state) => {
   return {
     toEdit: state.posts.toEdit,
+    authors: state.posts.authors
     fetching: state.posts.fetching,
     saved: state.posts.saved,
     editorCount: state.posts.editorCount
