@@ -12,12 +12,17 @@ import {
   DELETING_POST,
   DELETED_POST,
   DELETE_POST_ERROR,
+  SET_STATE_AUTHORS,
+  GETTING_AUTHORS,
+  GET_AUTHORS_ERROR,
 } from '../actions/index.js';
 
 const initialState = {
   posts: [],
+  authors: [],
   slugInd: {},
   fetching: false,
+  authorFetch: false,
   saved: false,
   editorCount: 0,
   toRender: null,
@@ -53,6 +58,15 @@ const PostReducer = (state = initialState, action) => {
         posts: action.data[0],
         slugInd: action.data[1],
       });
+    case GETTING_AUTHORS:
+      return Object.assign({}, state, {authorFetch: true});
+    case SET_STATE_AUTHORS:
+      return Object.assign({}, state, {
+        authorFetch: false,
+        authors: action.data[0],
+      });
+    case GET_AUTHORS_ERROR:
+      return Object.assign({}, state, {authorFetch: false});
     case GET_POSTS_ERROR:
       return Object.assign({}, state, {fetching: false});
     case SET_POST_TO_EDIT:
@@ -62,7 +76,7 @@ const PostReducer = (state = initialState, action) => {
     case SET_POST_TO_RENDER:
       return Object.assign({}, state, {
         toRender: action.data,
-      })
+      });
     case ADD_EDITOR:
       return Object.assign({}, state, {editorCount: state.editorCount + 1});
     case SAVE_REDIRECT:

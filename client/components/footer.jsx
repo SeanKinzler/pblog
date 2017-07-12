@@ -37,7 +37,8 @@ export default class Footer extends Component {
               </a>
               <TakeAction />
             </li>
-            <li id="nav2"><a href='/about'>Contact Us</a></li>
+            <li id="nav2"><a href='/about'>About Us</a></li>
+            <li id="nav2"><a href='/about#writer'>Write For Policure</a></li>
           </ul>
           <ul className="nav navbar-nav nav-ul navbar-right">
             <li className="socialMediaButton">

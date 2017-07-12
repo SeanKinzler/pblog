@@ -30,6 +30,7 @@ const saveStoryHandler = (req, res) => {
     query = `UPDATE Posts SET 
       slug = "${newFileName}", 
       author = "${req.body.author}",
+      authorId = ${req.body.authorId}
       title = "${req.body.title}",
       blurb = "${req.body.blurb}",
       bannerPath = "${typeof bannerPath != 'undefined' ? bannerPath : null}",
@@ -56,8 +57,8 @@ const saveStoryHandler = (req, res) => {
   } else {
     console.log('bannerPath: ', bannerPath);
     const htmlPath = saveHtmlToS3(req.body.html, `html/${newFileName}.html`);
-    query = `INSERT INTO Posts (slug, author, title, blurb, bannerPath, thumbPath, bannerRights, thumbRights, htmlPath) 
-      values ("${newFileName}", "${req.body.author}", "${req.body.title}", "${req.body.blurb}", 
+    query = `INSERT INTO Posts (slug, author, authorId, title, blurb, bannerPath, thumbPath, bannerRights, thumbRights, htmlPath) 
+      values ("${newFileName}", "${req.body.author}", ${req.body.authorId}, "${req.body.title}", "${req.body.blurb}", 
       "${bannerPath.length !== 0 ? bannerPath : null}", 
       "${thumbPath.length !== 0 ? thumbPath : null}", 
       "${req.body.bannerRights}", "${req.body.thumbRights}", "html/${newFileName}.html");`

@@ -20,7 +20,10 @@ export const SET_POST_TO_RENDER = 'SET_POST_TO_RENDER';
 export const DELETING_POST = 'DELETING_POST';
 export const DELETED_POST = 'DELETED_POST';
 export const DELETE_POST_ERROR = 'DELETE_POST_ERROR';
-export const GET_AUTHORS = 'GET_AUTHORS';
+// export const GET_AUTHORS = 'GET_AUTHORS';
+export const GETTING_AUTHORS = 'GETTING_AUTHORS';
+export const SET_STATE_AUTHORS = 'SET_STATE_AUTHORS';
+export const GET_AUTHORS_ERROR = 'GET_AUTHORS_ERROR';
 
 axios.defaults.headers.common['jwt'] = localStorage.token;
 
@@ -171,9 +174,9 @@ export const getPosts = (cb = () => {}) => {
     });
 
   }
-  return {
-    type: GET_POSTS
-  }
+  // return {
+  //   type: GET_POSTS
+  // }
 }
 
 export const gettingPosts = () => {
@@ -189,6 +192,39 @@ export const getPostsErr = (err) => {
   }
 }
 
+export const getAuthors = (cb = () => {}) => {
+  return (dispatch) => {
+    dispatch(gettingAuthors());
+    axios.get('/api/getAuthors').then(res => {
+      dispatch(setStateAuthors(res.data))
+      cb();
+    }).catch(err => {
+      dispatch(getAuthorsError(err));
+      cb();
+    });
+  }
+}
+
+export const gettingAuthors = () => {
+  return {
+    type: GETTING_AUTHORS
+  }
+} 
+
+export const setStateAuthors = (authors) => {
+  return {
+    type: SET_STATE_AUTHORS,
+    data: authors,
+  }
+}
+
+export const getAuthorsError = (err) => {
+  console.log(err);
+  return {
+    type: GET_AUTHORS_ERROR
+  }
+}
+
 export const setStatePosts = (posts) => {
   let slugInd = {};
   posts.forEach(post => {
@@ -200,6 +236,7 @@ export const setStatePosts = (posts) => {
   }
   
 }
+
 
 export const setPostToEdit = (post) => {
   return {

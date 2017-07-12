@@ -1,12 +1,16 @@
 const sqlQuery = require('../db/config.js');
 
-const getAuthorHandler = (req, res) => {
-  sqlQuery(`select * from Users where admin=1;`, (rows, err) => {
+const getAuthorsHandler = (req, res) => {
+  sqlQuery(`select googleId, name from Users where admin=1;`, (err, rows) => {
     if (err) {
       console.log('getAuthorError: ', err);
       res.sendStatus(500);
+    } else {
+      console.log(rows);
+      res.send(rows);
     }
-    res.send(rows);
   });
 
 }
+
+module.exports = getAuthorsHandler;

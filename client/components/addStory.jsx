@@ -209,7 +209,7 @@ class AddStory extends Component {
 const mapStateToProps = (state) => {
   return {
     toEdit: state.posts.toEdit,
-    authors: state.posts.authors
+    authors: state.posts.authors,
     fetching: state.posts.fetching,
     saved: state.posts.saved,
     editorCount: state.posts.editorCount

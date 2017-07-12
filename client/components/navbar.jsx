@@ -19,6 +19,13 @@ export default class NavBar extends Component {
           </a>
         </div>
         <div className="collapse navbar-collapse" id="navigationbar">
+          <ul className="nav navbar-nav nav-ul">
+            <li>
+              <p className="navbar-text">
+                Lorem Ipsum about nothing.
+              </p>
+            </li>
+          </ul>
           <ul className="nav navbar-nav nav-ul navbar-right">
             <li className="nav1 dropdown">
               <a className="dropdown-toggle" id="dropdown-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

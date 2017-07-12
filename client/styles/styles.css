@@ -58,7 +58,8 @@ hr {
   height: 36px;
 }
 
-.nav-ul {
+.navbar-nav {
+  margin-left: 0;
 }
 
 .navbar-default .navbar-nav>li>a {
