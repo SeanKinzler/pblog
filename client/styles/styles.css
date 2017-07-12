@@ -62,6 +62,10 @@ hr {
   margin-left: 0;
 }
 
+.navbar-default .navbar-text {
+  color: #d1d1d1;
+}
+
 .navbar-default .navbar-nav>li>a {
   color: #d1d1d1;
 }
