@@ -22,7 +22,7 @@ export default class NavBar extends Component {
           <ul className="nav navbar-nav nav-ul">
             <li>
               <p className="navbar-text">
-                Lorem Ipsum about nothing.
+                News + Political Activists' Solutions for Every Day People.
               </p>
             </li>
           </ul>
